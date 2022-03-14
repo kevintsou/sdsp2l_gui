@@ -23,32 +23,8 @@ namespace gui
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Thread thread = new Thread(TimerTask);
-            //thread.Start();
-
             Form1 main = new Form1();
-            main.Shown += main_Shown;
-
-            //while (count <= 2) ;
-            //splashscreen.Hide();
             Application.Run(main);
         }
-
-        static void main_Shown(object sender, EventArgs e)
-        {
-            // Hide the splashscreen. 
-            //Thread.Sleep(1000);
-            //while (count <= 2) ;
-        }
-
-        private static void TimerTask()
-        {
-            while (count <= 2)
-            {
-                Thread.Sleep(1000);//©µ¿ð1000ms¡A¤]´N¬O1¬í
-                count++;
-            }
-        }
-
     }
 }
