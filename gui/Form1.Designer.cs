@@ -33,11 +33,11 @@ namespace gui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
-            this.pictureBox_fail = new System.Windows.Forms.PictureBox();
-            this.pictureBox_pass = new System.Windows.Forms.PictureBox();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.label_testTime = new System.Windows.Forms.Label();
+            this.erase_cmd_btn = new System.Windows.Forms.Button();
+            this.read_cmd_btn = new System.Windows.Forms.Button();
+            this.write_cmd_btn = new System.Windows.Forms.Button();
+            this.ddr_size_btn = new System.Windows.Forms.Button();
+            this.dev_cap_btn = new System.Windows.Forms.Button();
             this.textBox_rebuildTimeout = new System.Windows.Forms.TextBox();
             this.textbox_qdepth = new System.Windows.Forms.TextBox();
             this.textBox_writeSize = new System.Windows.Forms.TextBox();
@@ -48,7 +48,6 @@ namespace gui
             this.queue_depth = new System.Windows.Forms.Label();
             this.workload_combobox = new System.Windows.Forms.ComboBox();
             this.testTypeBox1 = new System.Windows.Forms.ComboBox();
-            this.startTestBtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -66,8 +65,6 @@ namespace gui
             this.btnClearOutput = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.mainTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_pass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_writeSize)).BeginInit();
             this.tabSMART.SuspendLayout();
             this.SuspendLayout();
@@ -89,11 +86,11 @@ namespace gui
             // 
             // mainTab
             // 
-            this.mainTab.Controls.Add(this.pictureBox_fail);
-            this.mainTab.Controls.Add(this.pictureBox_pass);
-            this.mainTab.Controls.Add(this.button12);
-            this.mainTab.Controls.Add(this.button11);
-            this.mainTab.Controls.Add(this.label_testTime);
+            this.mainTab.Controls.Add(this.erase_cmd_btn);
+            this.mainTab.Controls.Add(this.read_cmd_btn);
+            this.mainTab.Controls.Add(this.write_cmd_btn);
+            this.mainTab.Controls.Add(this.ddr_size_btn);
+            this.mainTab.Controls.Add(this.dev_cap_btn);
             this.mainTab.Controls.Add(this.textBox_rebuildTimeout);
             this.mainTab.Controls.Add(this.textbox_qdepth);
             this.mainTab.Controls.Add(this.textBox_writeSize);
@@ -104,7 +101,6 @@ namespace gui
             this.mainTab.Controls.Add(this.queue_depth);
             this.mainTab.Controls.Add(this.workload_combobox);
             this.mainTab.Controls.Add(this.testTypeBox1);
-            this.mainTab.Controls.Add(this.startTestBtn);
             this.mainTab.Controls.Add(this.label9);
             this.mainTab.Controls.Add(this.label8);
             this.mainTab.Controls.Add(this.label7);
@@ -119,60 +115,55 @@ namespace gui
             this.mainTab.TabIndex = 1;
             this.mainTab.Text = "Power Cycle";
             this.mainTab.UseVisualStyleBackColor = true;
-            this.mainTab.Click += new System.EventHandler(this.powerCycleTab_Click);
             // 
-            // pictureBox_fail
+            // erase_cmd_btn
             // 
-            this.pictureBox_fail.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_fail.Image")));
-            this.pictureBox_fail.Location = new System.Drawing.Point(357, 137);
-            this.pictureBox_fail.Name = "pictureBox_fail";
-            this.pictureBox_fail.Size = new System.Drawing.Size(249, 127);
-            this.pictureBox_fail.TabIndex = 30;
-            this.pictureBox_fail.TabStop = false;
-            this.pictureBox_fail.Visible = false;
+            this.erase_cmd_btn.Location = new System.Drawing.Point(735, 131);
+            this.erase_cmd_btn.Name = "erase_cmd_btn";
+            this.erase_cmd_btn.Size = new System.Drawing.Size(95, 23);
+            this.erase_cmd_btn.TabIndex = 31;
+            this.erase_cmd_btn.Text = "EraseCmd";
+            this.erase_cmd_btn.UseVisualStyleBackColor = true;
             // 
-            // pictureBox_pass
+            // read_cmd_btn
             // 
-            this.pictureBox_pass.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_pass.Image")));
-            this.pictureBox_pass.Location = new System.Drawing.Point(339, 126);
-            this.pictureBox_pass.Name = "pictureBox_pass";
-            this.pictureBox_pass.Size = new System.Drawing.Size(249, 105);
-            this.pictureBox_pass.TabIndex = 29;
-            this.pictureBox_pass.TabStop = false;
-            this.pictureBox_pass.Visible = false;
+            this.read_cmd_btn.Location = new System.Drawing.Point(735, 102);
+            this.read_cmd_btn.Name = "read_cmd_btn";
+            this.read_cmd_btn.Size = new System.Drawing.Size(95, 23);
+            this.read_cmd_btn.TabIndex = 30;
+            this.read_cmd_btn.Text = "ReadCmd";
+            this.read_cmd_btn.UseVisualStyleBackColor = true;
+            this.read_cmd_btn.Click += new System.EventHandler(this.read_cmd_btn_Click);
             // 
-            // button12
+            // write_cmd_btn
             // 
-            this.button12.Location = new System.Drawing.Point(735, 44);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 28;
-            this.button12.Text = "button12";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Visible = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.write_cmd_btn.Location = new System.Drawing.Point(735, 73);
+            this.write_cmd_btn.Name = "write_cmd_btn";
+            this.write_cmd_btn.Size = new System.Drawing.Size(95, 23);
+            this.write_cmd_btn.TabIndex = 29;
+            this.write_cmd_btn.Text = "WriteCmd";
+            this.write_cmd_btn.UseVisualStyleBackColor = true;
+            this.write_cmd_btn.Click += new System.EventHandler(this.write_cmd_btn_Click);
             // 
-            // button11
+            // ddr_size_btn
             // 
-            this.button11.Enabled = false;
-            this.button11.Location = new System.Drawing.Point(735, 15);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 27;
-            this.button11.Text = "button11";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Visible = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.ddr_size_btn.Location = new System.Drawing.Point(735, 44);
+            this.ddr_size_btn.Name = "ddr_size_btn";
+            this.ddr_size_btn.Size = new System.Drawing.Size(95, 23);
+            this.ddr_size_btn.TabIndex = 28;
+            this.ddr_size_btn.Text = "GetDdrSize";
+            this.ddr_size_btn.UseVisualStyleBackColor = true;
+            this.ddr_size_btn.Click += new System.EventHandler(this.ddr_size_btn_Click);
             // 
-            // label_testTime
+            // dev_cap_btn
             // 
-            this.label_testTime.AutoSize = true;
-            this.label_testTime.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_testTime.Location = new System.Drawing.Point(704, 189);
-            this.label_testTime.Name = "label_testTime";
-            this.label_testTime.Size = new System.Drawing.Size(14, 15);
-            this.label_testTime.TabIndex = 26;
-            this.label_testTime.Text = "T";
+            this.dev_cap_btn.Location = new System.Drawing.Point(735, 15);
+            this.dev_cap_btn.Name = "dev_cap_btn";
+            this.dev_cap_btn.Size = new System.Drawing.Size(95, 23);
+            this.dev_cap_btn.TabIndex = 27;
+            this.dev_cap_btn.Text = "GetDevCap";
+            this.dev_cap_btn.UseVisualStyleBackColor = true;
+            this.dev_cap_btn.Click += new System.EventHandler(this.dev_cap_btn_Click);
             // 
             // textBox_rebuildTimeout
             // 
@@ -276,25 +267,6 @@ namespace gui
             this.testTypeBox1.TabIndex = 6;
             this.testTypeBox1.SelectedIndexChanged += new System.EventHandler(this.testTypeBox1_SelectedIndexChanged);
             // 
-            // startTestBtn
-            // 
-            this.startTestBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.startTestBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.startTestBtn.FlatAppearance.BorderSize = 0;
-            this.startTestBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.startTestBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startTestBtn.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.startTestBtn.Location = new System.Drawing.Point(684, 279);
-            this.startTestBtn.Name = "startTestBtn";
-            this.startTestBtn.Padding = new System.Windows.Forms.Padding(5);
-            this.startTestBtn.Size = new System.Drawing.Size(162, 87);
-            this.startTestBtn.TabIndex = 9;
-            this.startTestBtn.Text = "START";
-            this.startTestBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.startTestBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.startTestBtn.UseVisualStyleBackColor = true;
-            this.startTestBtn.Click += new System.EventHandler(this.startTestBtn_Click);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -369,7 +341,7 @@ namespace gui
             this.tabSMART.Location = new System.Drawing.Point(4, 34);
             this.tabSMART.Name = "tabSMART";
             this.tabSMART.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMART.Size = new System.Drawing.Size(852, 341);
+            this.tabSMART.Size = new System.Drawing.Size(852, 382);
             this.tabSMART.TabIndex = 2;
             this.tabSMART.Text = "Smart Info";
             this.tabSMART.UseVisualStyleBackColor = true;
@@ -463,13 +435,11 @@ namespace gui
             this.MinimumSize = new System.Drawing.Size(900, 700);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Xpacer 2021 v0.1.0";
+            this.Text = "SDS P2L simulator v0.1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl.ResumeLayout(false);
             this.mainTab.ResumeLayout(false);
             this.mainTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_pass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_writeSize)).EndInit();
             this.tabSMART.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -487,9 +457,8 @@ namespace gui
         private System.Windows.Forms.Button btn_clearSmart;
         private System.Windows.Forms.ListView listViewSmart;
         private System.Windows.Forms.TabPage mainTab;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Label label_testTime;
+        private System.Windows.Forms.Button ddr_size_btn;
+        private System.Windows.Forms.Button dev_cap_btn;
         private System.Windows.Forms.TextBox textBox_rebuildTimeout;
         private System.Windows.Forms.TextBox textbox_qdepth;
         private System.Windows.Forms.TextBox textBox_writeSize;
@@ -500,7 +469,6 @@ namespace gui
         private System.Windows.Forms.Label queue_depth;
         private System.Windows.Forms.ComboBox workload_combobox;
         private System.Windows.Forms.ComboBox testTypeBox1;
-        private System.Windows.Forms.Button startTestBtn;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -509,8 +477,9 @@ namespace gui
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar trackBar_writeSize;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.PictureBox pictureBox_pass;
-        private System.Windows.Forms.PictureBox pictureBox_fail;
+        private System.Windows.Forms.Button erase_cmd_btn;
+        private System.Windows.Forms.Button read_cmd_btn;
+        private System.Windows.Forms.Button write_cmd_btn;
     }
 }
 

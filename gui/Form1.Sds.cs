@@ -15,13 +15,14 @@ namespace gui
 {
     partial class Form1
     {
-        
-
-        // NVMe relative import
         [DllImport("sdsp2l_algo.dll")]
         static extern long lp2lHitCnt();
         [DllImport("sdsp2l_algo.dll")]
         static extern long lpl2ChkCnt();
+        [DllImport("sdsp2l_algo.dll")]
+        static extern int iGetDevCap();
+        [DllImport("sdsp2l_algo.dll")]
+        static extern int iGetDdrSize();
         [DllImport("sdsp2l_algo.dll")]
         static extern int iIssueFlashCmd(int cmd, int pAddr, IntPtr pPayload);
         [DllImport("sdsp2l_algo.dll")]
@@ -29,27 +30,13 @@ namespace gui
 
         [DllImport("nvmeio.dll")]
         static extern int iGetNVMeDevIdentifyData(int idx, IntPtr ptr);
-        [DllImport("nvmeio.dll")]
-        static extern int iNVMeWrite(int idx, int lba, int sectorCount, IntPtr databuffer);
-        [DllImport("nvmeio.dll")]
-        static extern int iNVMeRead(int idx, int lba, int sectorCount, IntPtr databuffer);
-        [DllImport("nvmeio.dll")]
-        static extern int iRescanDevice();
 
-
-
-        static private int iAvailDevCnt;    // total device count
-        static private int iCurrentDevIdx;  // nvme device index
-        static private string[] sDevName;   // nvme device name
-
-
-        sIdentifyControllerData idContData;
 
         public void GetDeviceIdentifyData(int idx)
         {
             IntPtr ptr = Marshal.AllocHGlobal(4096);
             int result = iGetNVMeDevIdentifyData(idx, ptr);
-            idContData = (sIdentifyControllerData)Marshal.PtrToStructure(ptr, typeof(sIdentifyControllerData));
+            //idContData = (sIdentifyControllerData)Marshal.PtrToStructure(ptr, typeof(sIdentifyControllerData));
         }
 
         public void vInitDevConfig(int dev_size, int ddr_size)

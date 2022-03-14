@@ -19,8 +19,8 @@ namespace gui
 
         public Form1()
         {
-
             InitializeComponent();
+            vInitDevConfig(128, 32);
         }
 
         private void textBoxStatus_TextChanged(object sender, EventArgs e)
@@ -158,19 +158,24 @@ namespace gui
             }
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void dev_cap_btn_Click(object sender, EventArgs e)
         {
-            startTestBtn.Text = "START";
-            startTestBtn.Image = Properties.Resources.power_64;
+            int cap = iGetDevCap();
+            textBoxStatus.AppendText("Device Capacity: " + cap.ToString() + "GB" + Environment.NewLine);
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void ddr_size_btn_Click(object sender, EventArgs e)
         {
-            startTestBtn.Text = "STOP";
-            startTestBtn.Image = Properties.Resources.power_off_64;
+            int ddr_size = iGetDdrSize();
+            textBoxStatus.AppendText("Dram Size: " + ddr_size.ToString() + "MB" + Environment.NewLine);
         }
 
-        private void powerCycleTab_Click(object sender, EventArgs e)
+        private void read_cmd_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void write_cmd_btn_Click(object sender, EventArgs e)
         {
 
         }
