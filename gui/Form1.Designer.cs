@@ -33,40 +33,57 @@ namespace gui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
-            this.erase_cmd_btn = new System.Windows.Forms.Button();
-            this.read_cmd_btn = new System.Windows.Forms.Button();
-            this.write_cmd_btn = new System.Windows.Forms.Button();
-            this.ddr_size_btn = new System.Windows.Forms.Button();
-            this.dev_cap_btn = new System.Windows.Forms.Button();
-            this.textBox_rebuildTimeout = new System.Windows.Forms.TextBox();
-            this.textbox_qdepth = new System.Windows.Forms.TextBox();
-            this.textBox_writeSize = new System.Windows.Forms.TextBox();
-            this.textBox_powerOnTime = new System.Windows.Forms.TextBox();
-            this.textBox_powerOffTime = new System.Windows.Forms.TextBox();
-            this.textbox_testloop = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.queue_depth = new System.Windows.Forms.Label();
-            this.workload_combobox = new System.Windows.Forms.ComboBox();
-            this.testTypeBox1 = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.initDevBtn = new System.Windows.Forms.Button();
+            this.pageTxBox = new System.Windows.Forms.TextBox();
+            this.planeTxBox = new System.Windows.Forms.TextBox();
+            this.blkTxBox = new System.Windows.Forms.TextBox();
+            this.chTxBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lab_ch = new System.Windows.Forms.Label();
+            this.erase_cmd_btn = new System.Windows.Forms.Button();
+            this.ddr_size_btn = new System.Windows.Forms.Button();
+            this.read_cmd_btn = new System.Windows.Forms.Button();
+            this.dev_cap_btn = new System.Windows.Forms.Button();
+            this.write_cmd_btn = new System.Windows.Forms.Button();
+            this.testGroup = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.timeElapsedTxBox = new System.Windows.Forms.TextBox();
+            this.checkBx_rslt = new System.Windows.Forms.CheckBox();
+            this.testTypeBox1 = new System.Windows.Forms.ComboBox();
+            this.testCmdBtn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dramSizeList = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.trackBar_writeSize = new System.Windows.Forms.TrackBar();
+            this.timeTxBox = new System.Windows.Forms.TextBox();
+            this.devCapBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabSMART = new System.Windows.Forms.TabPage();
             this.btn_clearSmart = new System.Windows.Forms.Button();
             this.listViewSmart = new System.Windows.Forms.ListView();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.timer_1sec = new System.Windows.Forms.Timer(this.components);
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
             this.btnClearOutput = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.pageNum = new System.Windows.Forms.Label();
+            this.planeNum = new System.Windows.Forms.Label();
+            this.blkNum = new System.Windows.Forms.Label();
+            this.chNum = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.mainTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_writeSize)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.testGroup.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.tabSMART.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -80,74 +97,140 @@ namespace gui
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(860, 420);
+            this.tabControl.Size = new System.Drawing.Size(757, 296);
             this.tabControl.TabIndex = 5;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // mainTab
             // 
-            this.mainTab.Controls.Add(this.erase_cmd_btn);
-            this.mainTab.Controls.Add(this.read_cmd_btn);
-            this.mainTab.Controls.Add(this.write_cmd_btn);
-            this.mainTab.Controls.Add(this.ddr_size_btn);
-            this.mainTab.Controls.Add(this.dev_cap_btn);
-            this.mainTab.Controls.Add(this.textBox_rebuildTimeout);
-            this.mainTab.Controls.Add(this.textbox_qdepth);
-            this.mainTab.Controls.Add(this.textBox_writeSize);
-            this.mainTab.Controls.Add(this.textBox_powerOnTime);
-            this.mainTab.Controls.Add(this.textBox_powerOffTime);
-            this.mainTab.Controls.Add(this.textbox_testloop);
-            this.mainTab.Controls.Add(this.label14);
-            this.mainTab.Controls.Add(this.queue_depth);
-            this.mainTab.Controls.Add(this.workload_combobox);
-            this.mainTab.Controls.Add(this.testTypeBox1);
-            this.mainTab.Controls.Add(this.label9);
-            this.mainTab.Controls.Add(this.label8);
-            this.mainTab.Controls.Add(this.label7);
-            this.mainTab.Controls.Add(this.label5);
-            this.mainTab.Controls.Add(this.label4);
-            this.mainTab.Controls.Add(this.label3);
-            this.mainTab.Controls.Add(this.trackBar_writeSize);
+            this.mainTab.Controls.Add(this.groupBox1);
+            this.mainTab.Controls.Add(this.testGroup);
             this.mainTab.Location = new System.Drawing.Point(4, 34);
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mainTab.Size = new System.Drawing.Size(852, 382);
+            this.mainTab.Size = new System.Drawing.Size(749, 258);
             this.mainTab.TabIndex = 1;
-            this.mainTab.Text = "Power Cycle";
+            this.mainTab.Text = "Main";
             this.mainTab.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.initDevBtn);
+            this.groupBox1.Controls.Add(this.pageTxBox);
+            this.groupBox1.Controls.Add(this.planeTxBox);
+            this.groupBox1.Controls.Add(this.blkTxBox);
+            this.groupBox1.Controls.Add(this.chTxBox);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lab_ch);
+            this.groupBox1.Controls.Add(this.erase_cmd_btn);
+            this.groupBox1.Controls.Add(this.ddr_size_btn);
+            this.groupBox1.Controls.Add(this.read_cmd_btn);
+            this.groupBox1.Controls.Add(this.dev_cap_btn);
+            this.groupBox1.Controls.Add(this.write_cmd_btn);
+            this.groupBox1.Location = new System.Drawing.Point(373, 15);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(359, 233);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Command";
+            // 
+            // initDevBtn
+            // 
+            this.initDevBtn.Location = new System.Drawing.Point(214, 168);
+            this.initDevBtn.Name = "initDevBtn";
+            this.initDevBtn.Size = new System.Drawing.Size(95, 23);
+            this.initDevBtn.TabIndex = 43;
+            this.initDevBtn.Text = "Init Device";
+            this.initDevBtn.UseVisualStyleBackColor = true;
+            this.initDevBtn.Click += new System.EventHandler(this.initDevBtn_Click);
+            // 
+            // pageTxBox
+            // 
+            this.pageTxBox.Location = new System.Drawing.Point(85, 112);
+            this.pageTxBox.Name = "pageTxBox";
+            this.pageTxBox.Size = new System.Drawing.Size(77, 23);
+            this.pageTxBox.TabIndex = 42;
+            this.pageTxBox.Text = "8";
+            this.pageTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
+            // 
+            // planeTxBox
+            // 
+            this.planeTxBox.Location = new System.Drawing.Point(85, 83);
+            this.planeTxBox.Name = "planeTxBox";
+            this.planeTxBox.Size = new System.Drawing.Size(77, 23);
+            this.planeTxBox.TabIndex = 41;
+            this.planeTxBox.Text = "0";
+            this.planeTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
+            // 
+            // blkTxBox
+            // 
+            this.blkTxBox.Location = new System.Drawing.Point(85, 54);
+            this.blkTxBox.Name = "blkTxBox";
+            this.blkTxBox.Size = new System.Drawing.Size(77, 23);
+            this.blkTxBox.TabIndex = 40;
+            this.blkTxBox.Text = "0";
+            this.blkTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
+            // 
+            // chTxBox
+            // 
+            this.chTxBox.Location = new System.Drawing.Point(85, 25);
+            this.chTxBox.Name = "chTxBox";
+            this.chTxBox.Size = new System.Drawing.Size(77, 23);
+            this.chTxBox.TabIndex = 39;
+            this.chTxBox.Text = "0";
+            this.chTxBox.TextChanged += new System.EventHandler(this.chTxBox_TextChanged);
+            this.chTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(35, 112);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 15);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Page:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(35, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 15);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Plane:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(35, 54);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 15);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Block:";
+            // 
+            // lab_ch
+            // 
+            this.lab_ch.AutoSize = true;
+            this.lab_ch.Location = new System.Drawing.Point(35, 28);
+            this.lab_ch.Name = "lab_ch";
+            this.lab_ch.Size = new System.Drawing.Size(27, 15);
+            this.lab_ch.TabIndex = 35;
+            this.lab_ch.Text = "CH:";
             // 
             // erase_cmd_btn
             // 
-            this.erase_cmd_btn.Location = new System.Drawing.Point(735, 131);
+            this.erase_cmd_btn.Location = new System.Drawing.Point(214, 81);
             this.erase_cmd_btn.Name = "erase_cmd_btn";
             this.erase_cmd_btn.Size = new System.Drawing.Size(95, 23);
             this.erase_cmd_btn.TabIndex = 31;
             this.erase_cmd_btn.Text = "EraseCmd";
             this.erase_cmd_btn.UseVisualStyleBackColor = true;
             // 
-            // read_cmd_btn
-            // 
-            this.read_cmd_btn.Location = new System.Drawing.Point(735, 102);
-            this.read_cmd_btn.Name = "read_cmd_btn";
-            this.read_cmd_btn.Size = new System.Drawing.Size(95, 23);
-            this.read_cmd_btn.TabIndex = 30;
-            this.read_cmd_btn.Text = "ReadCmd";
-            this.read_cmd_btn.UseVisualStyleBackColor = true;
-            this.read_cmd_btn.Click += new System.EventHandler(this.read_cmd_btn_Click);
-            // 
-            // write_cmd_btn
-            // 
-            this.write_cmd_btn.Location = new System.Drawing.Point(735, 73);
-            this.write_cmd_btn.Name = "write_cmd_btn";
-            this.write_cmd_btn.Size = new System.Drawing.Size(95, 23);
-            this.write_cmd_btn.TabIndex = 29;
-            this.write_cmd_btn.Text = "WriteCmd";
-            this.write_cmd_btn.UseVisualStyleBackColor = true;
-            this.write_cmd_btn.Click += new System.EventHandler(this.write_cmd_btn_Click);
-            // 
             // ddr_size_btn
             // 
-            this.ddr_size_btn.Location = new System.Drawing.Point(735, 44);
+            this.ddr_size_btn.Location = new System.Drawing.Point(214, 140);
             this.ddr_size_btn.Name = "ddr_size_btn";
             this.ddr_size_btn.Size = new System.Drawing.Size(95, 23);
             this.ddr_size_btn.TabIndex = 28;
@@ -155,9 +238,19 @@ namespace gui
             this.ddr_size_btn.UseVisualStyleBackColor = true;
             this.ddr_size_btn.Click += new System.EventHandler(this.ddr_size_btn_Click);
             // 
+            // read_cmd_btn
+            // 
+            this.read_cmd_btn.Location = new System.Drawing.Point(214, 52);
+            this.read_cmd_btn.Name = "read_cmd_btn";
+            this.read_cmd_btn.Size = new System.Drawing.Size(95, 23);
+            this.read_cmd_btn.TabIndex = 30;
+            this.read_cmd_btn.Text = "ReadCmd";
+            this.read_cmd_btn.UseVisualStyleBackColor = true;
+            this.read_cmd_btn.Click += new System.EventHandler(this.read_cmd_btn_Click);
+            // 
             // dev_cap_btn
             // 
-            this.dev_cap_btn.Location = new System.Drawing.Point(735, 15);
+            this.dev_cap_btn.Location = new System.Drawing.Point(214, 111);
             this.dev_cap_btn.Name = "dev_cap_btn";
             this.dev_cap_btn.Size = new System.Drawing.Size(95, 23);
             this.dev_cap_btn.TabIndex = 27;
@@ -165,174 +258,165 @@ namespace gui
             this.dev_cap_btn.UseVisualStyleBackColor = true;
             this.dev_cap_btn.Click += new System.EventHandler(this.dev_cap_btn_Click);
             // 
-            // textBox_rebuildTimeout
+            // write_cmd_btn
             // 
-            this.textBox_rebuildTimeout.Location = new System.Drawing.Point(157, 166);
-            this.textBox_rebuildTimeout.Name = "textBox_rebuildTimeout";
-            this.textBox_rebuildTimeout.Size = new System.Drawing.Size(77, 23);
-            this.textBox_rebuildTimeout.TabIndex = 23;
-            this.textBox_rebuildTimeout.Text = "30";
-            this.textBox_rebuildTimeout.TextChanged += new System.EventHandler(this.textBox_rebuildTimeout_TextChanged);
-            this.textBox_rebuildTimeout.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_rebuildTimeout_KeyPress);
+            this.write_cmd_btn.Location = new System.Drawing.Point(214, 23);
+            this.write_cmd_btn.Name = "write_cmd_btn";
+            this.write_cmd_btn.Size = new System.Drawing.Size(95, 23);
+            this.write_cmd_btn.TabIndex = 29;
+            this.write_cmd_btn.Text = "WriteCmd";
+            this.write_cmd_btn.UseVisualStyleBackColor = true;
+            this.write_cmd_btn.Click += new System.EventHandler(this.write_cmd_btn_Click);
             // 
-            // textbox_qdepth
+            // testGroup
             // 
-            this.textbox_qdepth.Enabled = false;
-            this.textbox_qdepth.Location = new System.Drawing.Point(101, 204);
-            this.textbox_qdepth.MaxLength = 20;
-            this.textbox_qdepth.Name = "textbox_qdepth";
-            this.textbox_qdepth.Size = new System.Drawing.Size(74, 23);
-            this.textbox_qdepth.TabIndex = 21;
-            this.textbox_qdepth.Text = "64";
+            this.testGroup.Controls.Add(this.textBox1);
+            this.testGroup.Controls.Add(this.groupBox3);
+            this.testGroup.Controls.Add(this.textBox2);
+            this.testGroup.Controls.Add(this.checkBx_rslt);
+            this.testGroup.Controls.Add(this.textBox3);
+            this.testGroup.Controls.Add(this.testTypeBox1);
+            this.testGroup.Controls.Add(this.textBox4);
+            this.testGroup.Controls.Add(this.pageNum);
+            this.testGroup.Controls.Add(this.testCmdBtn);
+            this.testGroup.Controls.Add(this.planeNum);
+            this.testGroup.Controls.Add(this.label7);
+            this.testGroup.Controls.Add(this.blkNum);
+            this.testGroup.Controls.Add(this.dramSizeList);
+            this.testGroup.Controls.Add(this.chNum);
+            this.testGroup.Controls.Add(this.label8);
+            this.testGroup.Controls.Add(this.label3);
+            this.testGroup.Controls.Add(this.timeTxBox);
+            this.testGroup.Controls.Add(this.devCapBox);
+            this.testGroup.Controls.Add(this.label1);
+            this.testGroup.Location = new System.Drawing.Point(15, 15);
+            this.testGroup.Name = "testGroup";
+            this.testGroup.Size = new System.Drawing.Size(341, 233);
+            this.testGroup.TabIndex = 37;
+            this.testGroup.TabStop = false;
+            this.testGroup.Text = "Script test";
             // 
-            // textBox_writeSize
+            // groupBox3
             // 
-            this.textBox_writeSize.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox_writeSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_writeSize.Enabled = false;
-            this.textBox_writeSize.Location = new System.Drawing.Point(169, 309);
-            this.textBox_writeSize.MaxLength = 20;
-            this.textBox_writeSize.Name = "textBox_writeSize";
-            this.textBox_writeSize.Size = new System.Drawing.Size(65, 16);
-            this.textBox_writeSize.TabIndex = 16;
-            this.textBox_writeSize.Text = "512Byte";
-            this.textBox_writeSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.groupBox3.Controls.Add(this.timeElapsedTxBox);
+            this.groupBox3.Location = new System.Drawing.Point(134, 179);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(175, 46);
+            this.groupBox3.TabIndex = 38;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Time elapsed";
             // 
-            // textBox_powerOnTime
+            // timeElapsedTxBox
             // 
-            this.textBox_powerOnTime.Location = new System.Drawing.Point(169, 126);
-            this.textBox_powerOnTime.Name = "textBox_powerOnTime";
-            this.textBox_powerOnTime.Size = new System.Drawing.Size(77, 23);
-            this.textBox_powerOnTime.TabIndex = 13;
-            this.textBox_powerOnTime.Text = "10";
-            this.textBox_powerOnTime.TextChanged += new System.EventHandler(this.textBox_powerOnTime_TextChanged);
-            this.textBox_powerOnTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.powerOff_keypress);
+            this.timeElapsedTxBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.timeElapsedTxBox.Location = new System.Drawing.Point(31, 17);
+            this.timeElapsedTxBox.Name = "timeElapsedTxBox";
+            this.timeElapsedTxBox.Size = new System.Drawing.Size(123, 16);
+            this.timeElapsedTxBox.TabIndex = 0;
             // 
-            // textBox_powerOffTime
+            // checkBx_rslt
             // 
-            this.textBox_powerOffTime.Location = new System.Drawing.Point(191, 88);
-            this.textBox_powerOffTime.Name = "textBox_powerOffTime";
-            this.textBox_powerOffTime.Size = new System.Drawing.Size(77, 23);
-            this.textBox_powerOffTime.TabIndex = 12;
-            this.textBox_powerOffTime.Text = "10";
-            this.textBox_powerOffTime.TextChanged += new System.EventHandler(this.textBox_powerOffTime_TextChanged);
-            this.textBox_powerOffTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.powerOfint_keypress);
-            // 
-            // textbox_testloop
-            // 
-            this.textbox_testloop.Location = new System.Drawing.Point(66, 53);
-            this.textbox_testloop.Margin = new System.Windows.Forms.Padding(50);
-            this.textbox_testloop.MaxLength = 20;
-            this.textbox_testloop.Name = "textbox_testloop";
-            this.textbox_testloop.Size = new System.Drawing.Size(74, 23);
-            this.textbox_testloop.TabIndex = 11;
-            this.textbox_testloop.Text = "1024";
-            this.textbox_testloop.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.testLoop_keypress);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(18, 169);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(133, 15);
-            this.label14.TabIndex = 22;
-            this.label14.Text = "Rebuild Timeout (sec):";
-            // 
-            // queue_depth
-            // 
-            this.queue_depth.AutoSize = true;
-            this.queue_depth.Enabled = false;
-            this.queue_depth.Location = new System.Drawing.Point(19, 207);
-            this.queue_depth.Name = "queue_depth";
-            this.queue_depth.Size = new System.Drawing.Size(55, 15);
-            this.queue_depth.TabIndex = 20;
-            this.queue_depth.Text = "QDepth:";
-            // 
-            // workload_combobox
-            // 
-            this.workload_combobox.Enabled = false;
-            this.workload_combobox.FormattingEnabled = true;
-            this.workload_combobox.Location = new System.Drawing.Point(101, 241);
-            this.workload_combobox.Name = "workload_combobox";
-            this.workload_combobox.Size = new System.Drawing.Size(129, 23);
-            this.workload_combobox.TabIndex = 17;
-            this.workload_combobox.SelectedIndexChanged += new System.EventHandler(this.workload_combobox_SelectedIndexChanged);
+            this.checkBx_rslt.AutoSize = true;
+            this.checkBx_rslt.Location = new System.Drawing.Point(196, 153);
+            this.checkBx_rslt.Name = "checkBx_rslt";
+            this.checkBx_rslt.Size = new System.Drawing.Size(99, 19);
+            this.checkBx_rslt.TabIndex = 37;
+            this.checkBx_rslt.Text = "Output result";
+            this.checkBx_rslt.UseVisualStyleBackColor = true;
+            this.checkBx_rslt.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // testTypeBox1
             // 
             this.testTypeBox1.FormattingEnabled = true;
-            this.testTypeBox1.Location = new System.Drawing.Point(66, 15);
+            this.testTypeBox1.Location = new System.Drawing.Point(69, 82);
             this.testTypeBox1.Name = "testTypeBox1";
-            this.testTypeBox1.Size = new System.Drawing.Size(638, 23);
+            this.testTypeBox1.Size = new System.Drawing.Size(79, 23);
             this.testTypeBox1.TabIndex = 6;
             this.testTypeBox1.SelectedIndexChanged += new System.EventHandler(this.testTypeBox1_SelectedIndexChanged);
             // 
-            // label9
+            // testCmdBtn
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 129);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(145, 15);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Power off idle time (sec):";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 91);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(167, 15);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Time to remove power (sec):";
+            this.testCmdBtn.Location = new System.Drawing.Point(22, 190);
+            this.testCmdBtn.Name = "testCmdBtn";
+            this.testCmdBtn.Size = new System.Drawing.Size(95, 23);
+            this.testCmdBtn.TabIndex = 36;
+            this.testCmdBtn.Text = "Start Test";
+            this.testCmdBtn.UseVisualStyleBackColor = true;
+            this.testCmdBtn.Click += new System.EventHandler(this.testCmdBtn_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 19);
+            this.label7.Location = new System.Drawing.Point(21, 86);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 15);
             this.label7.TabIndex = 6;
             this.label7.Text = "Script:";
             // 
-            // label5
+            // dramSizeList
             // 
-            this.label5.AutoSize = true;
-            this.label5.Enabled = false;
-            this.label5.Location = new System.Drawing.Point(19, 244);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 15);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Workload:";
+            this.dramSizeList.FormattingEnabled = true;
+            this.dramSizeList.Items.AddRange(new object[] {
+            "8MB",
+            "16MB",
+            "32MB",
+            "64MB"});
+            this.dramSizeList.Location = new System.Drawing.Point(69, 53);
+            this.dramSizeList.Name = "dramSizeList";
+            this.dramSizeList.Size = new System.Drawing.Size(79, 23);
+            this.dramSizeList.TabIndex = 34;
+            this.dramSizeList.SelectedIndexChanged += new System.EventHandler(this.dramSizeList_SelectedIndexChanged);
             // 
-            // label4
+            // label8
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 15);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Loops:";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(21, 153);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 15);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Time (min):";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Enabled = false;
-            this.label3.Location = new System.Drawing.Point(19, 284);
+            this.label3.Location = new System.Drawing.Point(21, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 15);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Write Size:";
+            this.label3.Size = new System.Drawing.Size(41, 15);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Dram:";
             // 
-            // trackBar_writeSize
+            // timeTxBox
             // 
-            this.trackBar_writeSize.Enabled = false;
-            this.trackBar_writeSize.Location = new System.Drawing.Point(101, 280);
-            this.trackBar_writeSize.Maximum = 6;
-            this.trackBar_writeSize.Name = "trackBar_writeSize";
-            this.trackBar_writeSize.Size = new System.Drawing.Size(209, 45);
-            this.trackBar_writeSize.TabIndex = 0;
-            this.trackBar_writeSize.Value = 6;
-            this.trackBar_writeSize.Scroll += new System.EventHandler(this.trackBar_writeSize_Scroll);
+            this.timeTxBox.Location = new System.Drawing.Point(97, 150);
+            this.timeTxBox.Name = "timeTxBox";
+            this.timeTxBox.Size = new System.Drawing.Size(77, 23);
+            this.timeTxBox.TabIndex = 12;
+            this.timeTxBox.Text = "10";
+            this.timeTxBox.TextChanged += new System.EventHandler(this.timeTxBox_TextChanged);
+            this.timeTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
+            // 
+            // devCapBox
+            // 
+            this.devCapBox.FormattingEnabled = true;
+            this.devCapBox.Items.AddRange(new object[] {
+            "32GB",
+            "64GB",
+            "128GB",
+            "256GB"});
+            this.devCapBox.Location = new System.Drawing.Point(69, 24);
+            this.devCapBox.Name = "devCapBox";
+            this.devCapBox.Size = new System.Drawing.Size(79, 23);
+            this.devCapBox.TabIndex = 32;
+            this.devCapBox.SelectedIndexChanged += new System.EventHandler(this.devCapBox_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 15);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Cap:";
             // 
             // tabSMART
             // 
@@ -341,9 +425,9 @@ namespace gui
             this.tabSMART.Location = new System.Drawing.Point(4, 34);
             this.tabSMART.Name = "tabSMART";
             this.tabSMART.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMART.Size = new System.Drawing.Size(852, 382);
+            this.tabSMART.Size = new System.Drawing.Size(749, 238);
             this.tabSMART.TabIndex = 2;
-            this.tabSMART.Text = "Smart Info";
+            this.tabSMART.Text = "Result";
             this.tabSMART.UseVisualStyleBackColor = true;
             this.tabSMART.Click += new System.EventHandler(this.tabSMART_Click);
             this.tabSMART.Enter += new System.EventHandler(this.tabSMART_Enter);
@@ -374,25 +458,14 @@ namespace gui
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxStatus.Location = new System.Drawing.Point(12, 458);
+            this.textBoxStatus.Location = new System.Drawing.Point(9, 16);
             this.textBoxStatus.Margin = new System.Windows.Forms.Padding(6);
             this.textBoxStatus.Multiline = true;
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxStatus.Size = new System.Drawing.Size(860, 241);
+            this.textBoxStatus.Size = new System.Drawing.Size(739, 185);
             this.textBoxStatus.TabIndex = 2;
             this.textBoxStatus.TextChanged += new System.EventHandler(this.textBoxStatus_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(12, 435);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Output";
             // 
             // timer_1sec
             // 
@@ -411,45 +484,126 @@ namespace gui
             this.btnClearOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearOutput.BackColor = System.Drawing.SystemColors.Window;
             this.btnClearOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearOutput.Location = new System.Drawing.Point(751, 661);
+            this.btnClearOutput.Location = new System.Drawing.Point(631, 151);
             this.btnClearOutput.Name = "btnClearOutput";
-            this.btnClearOutput.Size = new System.Drawing.Size(95, 23);
+            this.btnClearOutput.Size = new System.Drawing.Size(84, 38);
             this.btnClearOutput.TabIndex = 6;
-            this.btnClearOutput.Text = "Clear Output";
+            this.btnClearOutput.Text = "Clear ";
             this.btnClearOutput.UseVisualStyleBackColor = false;
             this.btnClearOutput.Click += new System.EventHandler(this.btnClearOutput_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnClearOutput);
+            this.groupBox2.Controls.Add(this.textBoxStatus);
+            this.groupBox2.Location = new System.Drawing.Point(12, 314);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(757, 208);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Message";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(232, 115);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(77, 23);
+            this.textBox1.TabIndex = 51;
+            this.textBox1.Text = "1024";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(232, 85);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(77, 23);
+            this.textBox2.TabIndex = 50;
+            this.textBox2.Text = "4";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(232, 56);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(77, 23);
+            this.textBox3.TabIndex = 49;
+            this.textBox3.Text = "0";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(232, 24);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(77, 23);
+            this.textBox4.TabIndex = 47;
+            this.textBox4.Text = "8";
+            // 
+            // pageNum
+            // 
+            this.pageNum.AutoSize = true;
+            this.pageNum.Location = new System.Drawing.Point(182, 115);
+            this.pageNum.Name = "pageNum";
+            this.pageNum.Size = new System.Drawing.Size(47, 15);
+            this.pageNum.TabIndex = 48;
+            this.pageNum.Text = "Page#:";
+            // 
+            // planeNum
+            // 
+            this.planeNum.AutoSize = true;
+            this.planeNum.Location = new System.Drawing.Point(182, 85);
+            this.planeNum.Name = "planeNum";
+            this.planeNum.Size = new System.Drawing.Size(49, 15);
+            this.planeNum.TabIndex = 46;
+            this.planeNum.Text = "Plane#:";
+            // 
+            // blkNum
+            // 
+            this.blkNum.AutoSize = true;
+            this.blkNum.Location = new System.Drawing.Point(182, 56);
+            this.blkNum.Name = "blkNum";
+            this.blkNum.Size = new System.Drawing.Size(48, 15);
+            this.blkNum.TabIndex = 44;
+            this.blkNum.Text = "Block#:";
+            // 
+            // chNum
+            // 
+            this.chNum.AutoSize = true;
+            this.chNum.Location = new System.Drawing.Point(182, 27);
+            this.chNum.Name = "chNum";
+            this.chNum.Size = new System.Drawing.Size(35, 15);
+            this.chNum.TabIndex = 45;
+            this.chNum.Text = "CH#:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(884, 711);
-            this.Controls.Add(this.btnClearOutput);
+            this.ClientSize = new System.Drawing.Size(784, 526);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxStatus);
             this.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(900, 700);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SDS P2L simulator v0.1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl.ResumeLayout(false);
             this.mainTab.ResumeLayout(false);
-            this.mainTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar_writeSize)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.testGroup.ResumeLayout(false);
+            this.testGroup.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.tabSMART.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.TextBox textBoxStatus;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer_1sec;
         private System.Windows.Forms.Timer timer_300MS;
         private System.Windows.Forms.Button btnClearOutput;
@@ -459,27 +613,42 @@ namespace gui
         private System.Windows.Forms.TabPage mainTab;
         private System.Windows.Forms.Button ddr_size_btn;
         private System.Windows.Forms.Button dev_cap_btn;
-        private System.Windows.Forms.TextBox textBox_rebuildTimeout;
-        private System.Windows.Forms.TextBox textbox_qdepth;
-        private System.Windows.Forms.TextBox textBox_writeSize;
-        private System.Windows.Forms.TextBox textBox_powerOnTime;
-        private System.Windows.Forms.TextBox textBox_powerOffTime;
-        private System.Windows.Forms.TextBox textbox_testloop;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label queue_depth;
-        private System.Windows.Forms.ComboBox workload_combobox;
+        private System.Windows.Forms.TextBox timeTxBox;
         private System.Windows.Forms.ComboBox testTypeBox1;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TrackBar trackBar_writeSize;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.Button erase_cmd_btn;
         private System.Windows.Forms.Button read_cmd_btn;
         private System.Windows.Forms.Button write_cmd_btn;
+        private System.Windows.Forms.ComboBox dramSizeList;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox devCapBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button testCmdBtn;
+        private System.Windows.Forms.GroupBox testGroup;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lab_ch;
+        private System.Windows.Forms.CheckBox checkBx_rslt;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox timeElapsedTxBox;
+        private System.Windows.Forms.TextBox pageTxBox;
+        private System.Windows.Forms.TextBox planeTxBox;
+        private System.Windows.Forms.TextBox blkTxBox;
+        private System.Windows.Forms.TextBox chTxBox;
+        private System.Windows.Forms.Button initDevBtn;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label pageNum;
+        private System.Windows.Forms.Label planeNum;
+        private System.Windows.Forms.Label blkNum;
+        private System.Windows.Forms.Label chNum;
     }
 }
 

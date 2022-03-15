@@ -24,30 +24,38 @@ namespace gui
         [DllImport("sdsp2l_algo.dll")]
         static extern int iGetDdrSize();
         [DllImport("sdsp2l_algo.dll")]
-        static extern int iIssueFlashCmd(int cmd, int pAddr, IntPtr pPayload);
+        static extern int iIssueFlashCmd(int cmd, int ch, int blk, int plane, int page, IntPtr pPayload);
         [DllImport("sdsp2l_algo.dll")]
-        static extern int iInitDeviceConfig(int dev_size, int ddr_size);
+        static extern int iInitDeviceConfig(int dev_size, int ddr_size, IntPtr bufPtr);
+
 
         [DllImport("nvmeio.dll")]
         static extern int iGetNVMeDevIdentifyData(int idx, IntPtr ptr);
 
+        IntPtr bufPtr;
 
         public void GetDeviceIdentifyData(int idx)
         {
-            IntPtr ptr = Marshal.AllocHGlobal(4096);
-            int result = iGetNVMeDevIdentifyData(idx, ptr);
+            bufPtr = Marshal.AllocHGlobal(4096);
+            int result = iGetNVMeDevIdentifyData(idx, bufPtr);
             //idContData = (sIdentifyControllerData)Marshal.PtrToStructure(ptr, typeof(sIdentifyControllerData));
         }
 
         public void vInitDevConfig(int dev_size, int ddr_size)
         {
-            iInitDeviceConfig(dev_size, ddr_size);
+            //IntPtr ptr = Marshal.AllocHGlobal(0x06208400); // 128GB dev , full dram, max memory required
+            if (bufPtr.ToInt32() == 0) {
+                bufPtr = Marshal.AllocHGlobal(0x06300000);
+            }
+
+            iInitDeviceConfig(dev_size, ddr_size, bufPtr);
+            int cap = iGetDevCap();
+            ddr_size = iGetDdrSize();
+            textBoxStatus.AppendText("    Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
         }
 
         public void vIssueFlashCmd(int cmd, int ch, int blk, int plane, int page, IntPtr ptr) {
-            int pAddr = 0;
-
-            iIssueFlashCmd(cmd, pAddr, ptr);
+            int lbn = iIssueFlashCmd(cmd, ch, blk, plane, page, ptr);
         }
 
         public int vCalculateHitRatio() {
