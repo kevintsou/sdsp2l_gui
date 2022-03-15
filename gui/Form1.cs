@@ -120,7 +120,7 @@ namespace gui
             int dataLbn  = 0;
 
             textBoxStatus.AppendText("    Issue read cmd: ch: " + ch + ", blk: " + blk + ", plane: " + plane + ", page: " + page + Environment.NewLine);
-            textBoxStatus.AppendText("    Read cmd done, lbn: " + lbn.ToString() + " , data lbn: " + dataLbn.ToString() + Environment.NewLine);
+            textBoxStatus.AppendText("    Read cmd done, lbn: 0x" + lbn.ToString("X4") + " , data lbn: 0x" + dataLbn.ToString("X4") + Environment.NewLine);
 
             Marshal.FreeHGlobal(pPayload);
         }
@@ -145,7 +145,7 @@ namespace gui
             Marshal.FreeHGlobal(pPayload);
 
             textBoxStatus.AppendText("    Issue write cmd: ch: " + ch + ", blk: " + blk + ", plane: " + plane + ", page: " + page + Environment.NewLine);
-            textBoxStatus.AppendText("    Write cmd done, lbn: " + lbn.ToString() + Environment.NewLine);
+            textBoxStatus.AppendText("    Write cmd done, lbn: 0x" + lbn.ToString("X4") + Environment.NewLine);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
