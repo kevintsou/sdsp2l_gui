@@ -49,19 +49,19 @@ namespace gui
             this.dev_cap_btn = new System.Windows.Forms.Button();
             this.write_cmd_btn = new System.Windows.Forms.Button();
             this.testGroup = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pageNum = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.timeElapsedTxBox = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.plnNum = new System.Windows.Forms.TextBox();
             this.checkBx_rslt = new System.Windows.Forms.CheckBox();
             this.testTypeBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.pageNum = new System.Windows.Forms.Label();
+            this.chNum = new System.Windows.Forms.TextBox();
+            this.pageNumTx = new System.Windows.Forms.Label();
             this.testCmdBtn = new System.Windows.Forms.Button();
             this.planeNum = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dramSizeList = new System.Windows.Forms.ComboBox();
-            this.chNum = new System.Windows.Forms.Label();
+            this.chNumTx = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.timeTxBox = new System.Windows.Forms.TextBox();
@@ -268,18 +268,18 @@ namespace gui
             // 
             // testGroup
             // 
-            this.testGroup.Controls.Add(this.textBox1);
+            this.testGroup.Controls.Add(this.pageNum);
             this.testGroup.Controls.Add(this.groupBox3);
-            this.testGroup.Controls.Add(this.textBox2);
+            this.testGroup.Controls.Add(this.plnNum);
             this.testGroup.Controls.Add(this.checkBx_rslt);
             this.testGroup.Controls.Add(this.testTypeBox1);
-            this.testGroup.Controls.Add(this.textBox4);
-            this.testGroup.Controls.Add(this.pageNum);
+            this.testGroup.Controls.Add(this.chNum);
+            this.testGroup.Controls.Add(this.pageNumTx);
             this.testGroup.Controls.Add(this.testCmdBtn);
             this.testGroup.Controls.Add(this.planeNum);
             this.testGroup.Controls.Add(this.label7);
             this.testGroup.Controls.Add(this.dramSizeList);
-            this.testGroup.Controls.Add(this.chNum);
+            this.testGroup.Controls.Add(this.chNumTx);
             this.testGroup.Controls.Add(this.label8);
             this.testGroup.Controls.Add(this.label3);
             this.testGroup.Controls.Add(this.timeTxBox);
@@ -292,13 +292,14 @@ namespace gui
             this.testGroup.TabStop = false;
             this.testGroup.Text = "Script test";
             // 
-            // textBox1
+            // pageNum
             // 
-            this.textBox1.Location = new System.Drawing.Point(232, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(77, 23);
-            this.textBox1.TabIndex = 51;
-            this.textBox1.Text = "1024";
+            this.pageNum.Location = new System.Drawing.Point(232, 83);
+            this.pageNum.Name = "pageNum";
+            this.pageNum.Size = new System.Drawing.Size(77, 23);
+            this.pageNum.TabIndex = 51;
+            this.pageNum.Text = "1024";
+            this.pageNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
             // groupBox3
             // 
@@ -318,13 +319,14 @@ namespace gui
             this.timeElapsedTxBox.Size = new System.Drawing.Size(123, 16);
             this.timeElapsedTxBox.TabIndex = 0;
             // 
-            // textBox2
+            // plnNum
             // 
-            this.textBox2.Location = new System.Drawing.Point(232, 53);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(77, 23);
-            this.textBox2.TabIndex = 50;
-            this.textBox2.Text = "4";
+            this.plnNum.Location = new System.Drawing.Point(232, 53);
+            this.plnNum.Name = "plnNum";
+            this.plnNum.Size = new System.Drawing.Size(77, 23);
+            this.plnNum.TabIndex = 50;
+            this.plnNum.Text = "4";
+            this.plnNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
             // checkBx_rslt
             // 
@@ -346,22 +348,24 @@ namespace gui
             this.testTypeBox1.TabIndex = 6;
             this.testTypeBox1.SelectedIndexChanged += new System.EventHandler(this.testTypeBox1_SelectedIndexChanged);
             // 
-            // textBox4
+            // chNum
             // 
-            this.textBox4.Location = new System.Drawing.Point(232, 24);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(77, 23);
-            this.textBox4.TabIndex = 47;
-            this.textBox4.Text = "8";
+            this.chNum.Location = new System.Drawing.Point(232, 24);
+            this.chNum.Name = "chNum";
+            this.chNum.Size = new System.Drawing.Size(77, 23);
+            this.chNum.TabIndex = 47;
+            this.chNum.Text = "8";
+            this.chNum.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.chNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
-            // pageNum
+            // pageNumTx
             // 
-            this.pageNum.AutoSize = true;
-            this.pageNum.Location = new System.Drawing.Point(182, 83);
-            this.pageNum.Name = "pageNum";
-            this.pageNum.Size = new System.Drawing.Size(47, 15);
-            this.pageNum.TabIndex = 48;
-            this.pageNum.Text = "Page#:";
+            this.pageNumTx.AutoSize = true;
+            this.pageNumTx.Location = new System.Drawing.Point(182, 83);
+            this.pageNumTx.Name = "pageNumTx";
+            this.pageNumTx.Size = new System.Drawing.Size(47, 15);
+            this.pageNumTx.TabIndex = 48;
+            this.pageNumTx.Text = "Page#:";
             // 
             // testCmdBtn
             // 
@@ -405,14 +409,14 @@ namespace gui
             this.dramSizeList.TabIndex = 34;
             this.dramSizeList.SelectedIndexChanged += new System.EventHandler(this.dramSizeList_SelectedIndexChanged);
             // 
-            // chNum
+            // chNumTx
             // 
-            this.chNum.AutoSize = true;
-            this.chNum.Location = new System.Drawing.Point(182, 27);
-            this.chNum.Name = "chNum";
-            this.chNum.Size = new System.Drawing.Size(35, 15);
-            this.chNum.TabIndex = 45;
-            this.chNum.Text = "CH#:";
+            this.chNumTx.AutoSize = true;
+            this.chNumTx.Location = new System.Drawing.Point(182, 27);
+            this.chNumTx.Name = "chNumTx";
+            this.chNumTx.Size = new System.Drawing.Size(35, 15);
+            this.chNumTx.TabIndex = 45;
+            this.chNumTx.Text = "CH#:";
             // 
             // label8
             // 
@@ -620,12 +624,12 @@ namespace gui
         private System.Windows.Forms.TextBox blkTxBox;
         private System.Windows.Forms.TextBox chTxBox;
         private System.Windows.Forms.Button initDevBtn;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label pageNum;
+        private System.Windows.Forms.TextBox pageNum;
+        private System.Windows.Forms.TextBox plnNum;
+        private System.Windows.Forms.TextBox chNum;
+        private System.Windows.Forms.Label pageNumTx;
         private System.Windows.Forms.Label planeNum;
-        private System.Windows.Forms.Label chNum;
+        private System.Windows.Forms.Label chNumTx;
     }
 }
 

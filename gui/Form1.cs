@@ -227,5 +227,10 @@ namespace gui
         {
             vInitDevConfig(s_dev.dev_size, s_dev.ddr_size);
         }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

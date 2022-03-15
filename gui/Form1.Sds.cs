@@ -26,7 +26,7 @@ namespace gui
         [DllImport("sdsp2l_algo.dll")]
         static extern int iIssueFlashCmd(int cmd, int ch, int blk, int plane, int page, IntPtr pPayload);
         [DllImport("sdsp2l_algo.dll")]
-        static extern int iInitDeviceConfig(int dev_size, int ddr_size, IntPtr bufPtr);
+        static extern int iInitDeviceConfig(int devCap, int ddrSize, int chCnt, int planeCnt, int pageCnt, IntPtr bufPtr);
 
 
         [DllImport("nvmeio.dll")]
@@ -47,8 +47,8 @@ namespace gui
             if (bufPtr.ToInt32() == 0) {
                 bufPtr = Marshal.AllocHGlobal(0x06300000);
             }
-
-            iInitDeviceConfig(dev_size, ddr_size, bufPtr);
+            
+            iInitDeviceConfig(dev_size, ddr_size, int.Parse(chNum.Text.ToString()), int.Parse(plnNum.Text.ToString()), int.Parse(pageNum.Text.ToString()), bufPtr);
             int cap = iGetDevCap();
             ddr_size = iGetDdrSize();
             textBoxStatus.AppendText("    Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
