@@ -16,6 +16,8 @@ namespace gui
     public partial class Form1 : Form
     {
         private int i;
+        int[] inBuffer = new int[512];
+
         private s_dev_config s_dev;
         public Form1()
         {
@@ -118,6 +120,8 @@ namespace gui
             int lbn = iIssueFlashCmd((int)e_cmd.E_CMD_READ, ch, blk, plane, page, pPayload);
             //int lbn = iFlashCmdHandler((int)e_cmd.E_CMD_READ, ch, blk, plane, page, pPayload);
             int dataLbn  = 0;
+            Marshal.Copy(pPayload, inBuffer, 0, 4);
+            dataLbn = inBuffer[0];
 
             textBoxStatus.AppendText("    Issue read cmd: ch: " + ch + ", blk: " + blk + ", plane: " + plane + ", page: " + page + Environment.NewLine);
             textBoxStatus.AppendText("    Read cmd done, lbn: 0x" + lbn.ToString("X4") + " , data lbn: 0x" + dataLbn.ToString("X4") + Environment.NewLine);
