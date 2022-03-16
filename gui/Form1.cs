@@ -256,5 +256,12 @@ namespace gui
             textBoxStatus.AppendText("    Issue erase cmd: ch: " + ch + ", blk: " + blk + ", plane: " + plane + Environment.NewLine);
             textBoxStatus.AppendText("    Erase cmd done, lbn: 0x" + lbn.ToString("X4") + Environment.NewLine);
         }
+
+        private void tblSizeBtn_Click(object sender, EventArgs e)
+        {
+            int tblSize = iGetTableSize();
+            tblSize = (tblSize / 1024) / 1024;
+            textBoxStatus.AppendText("    Total table size (MB): " + tblSize.ToString() + Environment.NewLine);
+        }
     }
 }

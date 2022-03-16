@@ -24,6 +24,8 @@ namespace gui
         [DllImport("sdsp2l_algo.dll")]
         static extern int iGetDdrSize();
         [DllImport("sdsp2l_algo.dll")]
+        static extern int iGetTableSize();
+        [DllImport("sdsp2l_algo.dll")]
         static extern int iIssueFlashCmd(int cmd, int ch, int blk, int plane, int page, IntPtr pPayload);
         [DllImport("sdsp2l_algo.dll")]
         static extern int iInitDeviceConfig(int devCap, int ddrSize, int chCnt, int planeCnt, int pageCnt, IntPtr bufPtr);
@@ -45,7 +47,7 @@ namespace gui
         {
             //IntPtr ptr = Marshal.AllocHGlobal(0x06208400); // 128GB dev , full dram, max memory required
             if (bufPtr.ToInt32() == 0) {
-                bufPtr = Marshal.AllocHGlobal(0x06300000);
+                bufPtr = Marshal.AllocHGlobal(0x06300000*2);
             }
             
             iInitDeviceConfig(dev_size, ddr_size, int.Parse(chNum.Text.ToString()), int.Parse(plnNum.Text.ToString()), int.Parse(pageNum.Text.ToString()), bufPtr);

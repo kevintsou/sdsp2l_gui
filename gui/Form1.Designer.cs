@@ -34,6 +34,7 @@ namespace gui
             this.tabControl = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tblSizeBtn = new System.Windows.Forms.Button();
             this.initDevBtn = new System.Windows.Forms.Button();
             this.pageTxBox = new System.Windows.Forms.TextBox();
             this.planeTxBox = new System.Windows.Forms.TextBox();
@@ -113,6 +114,7 @@ namespace gui
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tblSizeBtn);
             this.groupBox1.Controls.Add(this.initDevBtn);
             this.groupBox1.Controls.Add(this.pageTxBox);
             this.groupBox1.Controls.Add(this.planeTxBox);
@@ -134,9 +136,19 @@ namespace gui
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
             // 
+            // tblSizeBtn
+            // 
+            this.tblSizeBtn.Location = new System.Drawing.Point(244, 104);
+            this.tblSizeBtn.Name = "tblSizeBtn";
+            this.tblSizeBtn.Size = new System.Drawing.Size(95, 23);
+            this.tblSizeBtn.TabIndex = 44;
+            this.tblSizeBtn.Text = "GetTblSize";
+            this.tblSizeBtn.UseVisualStyleBackColor = true;
+            this.tblSizeBtn.Click += new System.EventHandler(this.tblSizeBtn_Click);
+            // 
             // initDevBtn
             // 
-            this.initDevBtn.Location = new System.Drawing.Point(214, 168);
+            this.initDevBtn.Location = new System.Drawing.Point(190, 133);
             this.initDevBtn.Name = "initDevBtn";
             this.initDevBtn.Size = new System.Drawing.Size(95, 23);
             this.initDevBtn.TabIndex = 43;
@@ -146,36 +158,36 @@ namespace gui
             // 
             // pageTxBox
             // 
-            this.pageTxBox.Location = new System.Drawing.Point(85, 112);
+            this.pageTxBox.Location = new System.Drawing.Point(66, 133);
             this.pageTxBox.Name = "pageTxBox";
-            this.pageTxBox.Size = new System.Drawing.Size(77, 23);
+            this.pageTxBox.Size = new System.Drawing.Size(61, 23);
             this.pageTxBox.TabIndex = 42;
             this.pageTxBox.Text = "8";
             this.pageTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
             // planeTxBox
             // 
-            this.planeTxBox.Location = new System.Drawing.Point(85, 83);
+            this.planeTxBox.Location = new System.Drawing.Point(66, 104);
             this.planeTxBox.Name = "planeTxBox";
-            this.planeTxBox.Size = new System.Drawing.Size(77, 23);
+            this.planeTxBox.Size = new System.Drawing.Size(61, 23);
             this.planeTxBox.TabIndex = 41;
             this.planeTxBox.Text = "0";
             this.planeTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
             // blkTxBox
             // 
-            this.blkTxBox.Location = new System.Drawing.Point(85, 54);
+            this.blkTxBox.Location = new System.Drawing.Point(66, 75);
             this.blkTxBox.Name = "blkTxBox";
-            this.blkTxBox.Size = new System.Drawing.Size(77, 23);
+            this.blkTxBox.Size = new System.Drawing.Size(61, 23);
             this.blkTxBox.TabIndex = 40;
             this.blkTxBox.Text = "0";
             this.blkTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
             // chTxBox
             // 
-            this.chTxBox.Location = new System.Drawing.Point(85, 25);
+            this.chTxBox.Location = new System.Drawing.Point(66, 46);
             this.chTxBox.Name = "chTxBox";
-            this.chTxBox.Size = new System.Drawing.Size(77, 23);
+            this.chTxBox.Size = new System.Drawing.Size(61, 23);
             this.chTxBox.TabIndex = 39;
             this.chTxBox.Text = "0";
             this.chTxBox.TextChanged += new System.EventHandler(this.chTxBox_TextChanged);
@@ -184,7 +196,7 @@ namespace gui
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(35, 112);
+            this.label6.Location = new System.Drawing.Point(16, 133);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 15);
             this.label6.TabIndex = 39;
@@ -193,7 +205,7 @@ namespace gui
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(35, 83);
+            this.label5.Location = new System.Drawing.Point(16, 104);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 15);
             this.label5.TabIndex = 37;
@@ -202,7 +214,7 @@ namespace gui
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 54);
+            this.label4.Location = new System.Drawing.Point(16, 75);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 15);
             this.label4.TabIndex = 35;
@@ -211,7 +223,7 @@ namespace gui
             // lab_ch
             // 
             this.lab_ch.AutoSize = true;
-            this.lab_ch.Location = new System.Drawing.Point(35, 28);
+            this.lab_ch.Location = new System.Drawing.Point(16, 49);
             this.lab_ch.Name = "lab_ch";
             this.lab_ch.Size = new System.Drawing.Size(27, 15);
             this.lab_ch.TabIndex = 35;
@@ -219,7 +231,7 @@ namespace gui
             // 
             // erase_cmd_btn
             // 
-            this.erase_cmd_btn.Location = new System.Drawing.Point(214, 81);
+            this.erase_cmd_btn.Location = new System.Drawing.Point(143, 104);
             this.erase_cmd_btn.Name = "erase_cmd_btn";
             this.erase_cmd_btn.Size = new System.Drawing.Size(95, 23);
             this.erase_cmd_btn.TabIndex = 31;
@@ -229,7 +241,7 @@ namespace gui
             // 
             // ddr_size_btn
             // 
-            this.ddr_size_btn.Location = new System.Drawing.Point(214, 140);
+            this.ddr_size_btn.Location = new System.Drawing.Point(244, 75);
             this.ddr_size_btn.Name = "ddr_size_btn";
             this.ddr_size_btn.Size = new System.Drawing.Size(95, 23);
             this.ddr_size_btn.TabIndex = 28;
@@ -239,7 +251,7 @@ namespace gui
             // 
             // read_cmd_btn
             // 
-            this.read_cmd_btn.Location = new System.Drawing.Point(214, 52);
+            this.read_cmd_btn.Location = new System.Drawing.Point(143, 75);
             this.read_cmd_btn.Name = "read_cmd_btn";
             this.read_cmd_btn.Size = new System.Drawing.Size(95, 23);
             this.read_cmd_btn.TabIndex = 30;
@@ -249,7 +261,7 @@ namespace gui
             // 
             // dev_cap_btn
             // 
-            this.dev_cap_btn.Location = new System.Drawing.Point(214, 111);
+            this.dev_cap_btn.Location = new System.Drawing.Point(244, 46);
             this.dev_cap_btn.Name = "dev_cap_btn";
             this.dev_cap_btn.Size = new System.Drawing.Size(95, 23);
             this.dev_cap_btn.TabIndex = 27;
@@ -259,7 +271,7 @@ namespace gui
             // 
             // write_cmd_btn
             // 
-            this.write_cmd_btn.Location = new System.Drawing.Point(214, 23);
+            this.write_cmd_btn.Location = new System.Drawing.Point(143, 46);
             this.write_cmd_btn.Name = "write_cmd_btn";
             this.write_cmd_btn.Size = new System.Drawing.Size(95, 23);
             this.write_cmd_btn.TabIndex = 29;
@@ -631,6 +643,7 @@ namespace gui
         private System.Windows.Forms.Label pageNumTx;
         private System.Windows.Forms.Label planeNum;
         private System.Windows.Forms.Label chNumTx;
+        private System.Windows.Forms.Button tblSizeBtn;
     }
 }
 
