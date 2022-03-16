@@ -232,5 +232,29 @@ namespace gui
         {
 
         }
+
+        private void erase_cmd_btn_Click(object sender, EventArgs e)
+        {
+            int ch = int.Parse(chTxBox.Text);
+            int blk = int.Parse(blkTxBox.Text);
+            int plane = int.Parse(planeTxBox.Text);
+            int page = int.Parse(pageTxBox.Text);
+
+            // error
+            if (ch >= 8)
+            {
+                textBoxStatus.AppendText("    [Err] Channel index error !!" + Environment.NewLine);
+                return;
+            }
+
+            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            // issue flash cmd to backend
+            int lbn = iIssueFlashCmd((int)e_cmd.E_CMD_ERASE, ch, blk, plane, page, pPayload);
+            //int lbn = iFlashCmdHandler((int)e_cmd.E_CMD_WRITE, ch, blk, plane, page, pPayload);
+            Marshal.FreeHGlobal(pPayload);
+
+            textBoxStatus.AppendText("    Issue erase cmd: ch: " + ch + ", blk: " + blk + ", plane: " + plane + Environment.NewLine);
+            textBoxStatus.AppendText("    Erase cmd done, lbn: 0x" + lbn.ToString("X4") + Environment.NewLine);
+        }
     }
 }

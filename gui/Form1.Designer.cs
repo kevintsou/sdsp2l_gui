@@ -225,6 +225,7 @@ namespace gui
             this.erase_cmd_btn.TabIndex = 31;
             this.erase_cmd_btn.Text = "EraseCmd";
             this.erase_cmd_btn.UseVisualStyleBackColor = true;
+            this.erase_cmd_btn.Click += new System.EventHandler(this.erase_cmd_btn_Click);
             // 
             // ddr_size_btn
             // 
@@ -476,7 +477,7 @@ namespace gui
             this.tabSMART.Location = new System.Drawing.Point(4, 34);
             this.tabSMART.Name = "tabSMART";
             this.tabSMART.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMART.Size = new System.Drawing.Size(749, 258);
+            this.tabSMART.Size = new System.Drawing.Size(749, 245);
             this.tabSMART.TabIndex = 2;
             this.tabSMART.Text = "Result";
             this.tabSMART.UseVisualStyleBackColor = true;
