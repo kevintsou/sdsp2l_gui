@@ -52,6 +52,7 @@ namespace gui
             this.testGroup = new System.Windows.Forms.GroupBox();
             this.pageNum = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.testStsBx = new System.Windows.Forms.TextBox();
             this.timeElapsedTxBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.plnNum = new System.Windows.Forms.TextBox();
@@ -76,7 +77,6 @@ namespace gui
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
             this.btnClearOutput = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.testStsBx = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -325,6 +325,15 @@ namespace gui
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Time elapsed";
+            // 
+            // testStsBx
+            // 
+            this.testStsBx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.testStsBx.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.testStsBx.Location = new System.Drawing.Point(87, 19);
+            this.testStsBx.Name = "testStsBx";
+            this.testStsBx.Size = new System.Drawing.Size(88, 17);
+            this.testStsBx.TabIndex = 1;
             // 
             // timeElapsedTxBox
             // 
@@ -576,15 +585,6 @@ namespace gui
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Message";
-            // 
-            // testStsBx
-            // 
-            this.testStsBx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.testStsBx.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.testStsBx.Location = new System.Drawing.Point(87, 19);
-            this.testStsBx.Name = "testStsBx";
-            this.testStsBx.Size = new System.Drawing.Size(88, 17);
-            this.testStsBx.TabIndex = 1;
             // 
             // Form1
             // 

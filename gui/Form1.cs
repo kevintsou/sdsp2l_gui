@@ -73,6 +73,9 @@ namespace gui
                     case 2:
                         testStsBx.Text = "Erasing data..";
                         break;
+                    case 3:
+                        testStsBx.Text = "Idle..";
+                        break;
                     default:
                         break;
                 }
@@ -281,6 +284,7 @@ namespace gui
                 testCmdBtn.Text = "Stop test";
                 textBoxStatus.AppendText("    Start test, script idx: " + s_test.testType + ", time(min): " + (s_test.testTime/60) + Environment.NewLine);
 
+                //iScript_0();
                 testThread = new Thread(iStartTestFunc);
                 testThread.Start();
             }

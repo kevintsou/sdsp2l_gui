@@ -60,7 +60,8 @@ namespace gui
     {
         E_CMD_READ = 0,
         E_CMD_WRITE,
-        E_CMD_ERASE
+        E_CMD_ERASE,
+        E_CMD_NONE,
     }
 
     public enum e_test_rslt

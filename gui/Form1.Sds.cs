@@ -62,6 +62,8 @@ namespace gui
 
             IntPtr pPayload = Marshal.AllocHGlobal(4);
             s_test.progress = (int)e_cmd.E_CMD_WRITE;
+            int lbn = 0, dataLbn = 0;
+
             // prefill data
             for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
             {
@@ -71,6 +73,33 @@ namespace gui
                 }
                 iIssueFlashCmdEn((int)e_cmd.E_CMD_WRITE, i, pPayload);
             }
+       
+            s_test.progress = (int)e_cmd.E_CMD_READ;
+            for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
+            {
+                // stop test button press
+                if (s_test.testSts == (int)e_state.E_STS_STOPPED)
+                {
+                    break;
+                }
+                lbn = iIssueFlashCmdEn((int)e_cmd.E_CMD_READ, i, pPayload);
+                Marshal.Copy(pPayload, inBuffer, 0, 4);
+                dataLbn = inBuffer[0];
+
+                if (lbn != dataLbn) {
+                    s_test.testSts = (int)e_state.E_STS_STOPPED;
+                    s_test.testRslt = (int)e_test_rslt.E_RSLT_MISCMPARE;
+                    Marshal.FreeHGlobal(pPayload);
+                    vStopTestHandler();
+                    return 1;
+                }
+            }
+
+            s_test.progress = (int)e_cmd.E_CMD_NONE;
+            s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;
+            
+            vStopTestHandler();
+            
             Marshal.FreeHGlobal(pPayload);
             return 0;
         }
