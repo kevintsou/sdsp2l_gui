@@ -19,6 +19,7 @@ namespace gui
         int[] inBuffer = new int[512];
 
         private s_dev_config s_dev;
+        private s_sript_mgr s_test;
         public Form1()
         {
             InitializeComponent();
@@ -27,10 +28,15 @@ namespace gui
             s_dev.ddr_size = 32;
             s_dev.dev_size = 128;
 
+            s_test = new s_sript_mgr();
+
+
             vInitDevConfig(s_dev.dev_size, s_dev.ddr_size);
 
             devCapBox.SelectedIndex = 2;    // 128GB
             dramSizeList.SelectedIndex = 2; // 32MB
+
+            testTypeBox1.SelectedIndex = 0;
 
         }
 
@@ -152,7 +158,7 @@ namespace gui
             textBoxStatus.AppendText("    Write cmd done, lbn: 0x" + lbn.ToString("X4") + Environment.NewLine);
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBx_rslt_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -215,12 +221,11 @@ namespace gui
 
         private void testCmdBtn_Click(object sender, EventArgs e)
         {
-            s_dev.testMin = int.Parse(timeTxBox.Text);
-            s_dev.hitCnt = 0;
-            s_dev.hitRate = 0;
-            s_dev.chkCnt = 0;
+            s_test.testTime = int.Parse((string)timeTxBox.Text);
+            s_test.testType = testTypeBox1.SelectedIndex;
+            s_test.outputRslt = (int)checkBx_rslt.CheckState;
 
-            textBoxStatus.AppendText("    Start test, script idx:" + Environment.NewLine);
+            textBoxStatus.AppendText("    Start test, script idx: " + s_test.testType + ", time(min): " + s_test.testTime + Environment.NewLine);
         }
 
         private void initDevBtn_Click(object sender, EventArgs e)

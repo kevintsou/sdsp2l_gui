@@ -5,41 +5,44 @@ namespace gui
     [StructLayout(LayoutKind.Sequential, Pack = 0)]
     public struct s_dev_config
     {
+        public int dev_size;
+        public int ddr_size;
+
         public int chCnt;
         public int blkCnt;
         public int pageCnt;
         public int planeCnt;
 
-        public int dev_size;
-        public int ddr_size;
+        public int chBitNum;
+        public int blkBitNum;
+        public int pageBitNum;
+        public int planeBitNum;
 
-        // test parameters
-        public int testMin;
-        public int chkCnt;
-        public int hitCnt;
-        public int hitRate;
+        public int chSftCnt;
+        public int blkSftCnt;
+        public int pageSftCnt;
+        public int planeSftCnt;
     }
 
+
     [StructLayout(LayoutKind.Sequential, Pack = 0)]
-    public struct s_dev_mgr
+    public struct s_sript_mgr
     {
-        int dev_cap;
-        int ddr_size;
+        // test config
+        public int testTime;
+        public int testType;
+        public int outputRslt;
 
-        int chCnt;
-        int blkCnt; // die block count
-        int pageCnt;
-        int planeCnt;
-
-        int chBitNum;
-        int blkBitNum;
-        int pageBitNum;
-        int planeBitNum;
-
-        int chSftCnt;
-        int blkSftCnt;
-        int pageSftCnt;
-        int planeSftCnt;
+        // device info
+        public int totalCmdCnt;
+        public int totalWrCnt;
+        public int totalRdCnt;
+        public int totalErsCnt;
+        public int bitChkCnt;
+        public int bitHitCnt;
+        public int hitRate;
+        public int[][] eraseCnt; // erase count of each die block (target)
+        public int[][] readCnt;  // read count of each die block (target)
     }
 
     public enum e_cmd

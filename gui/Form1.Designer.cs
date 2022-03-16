@@ -53,14 +53,14 @@ namespace gui
             this.pageNum = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.timeElapsedTxBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.plnNum = new System.Windows.Forms.TextBox();
-            this.checkBx_rslt = new System.Windows.Forms.CheckBox();
             this.testTypeBox1 = new System.Windows.Forms.ComboBox();
+            this.checkBx_rslt = new System.Windows.Forms.CheckBox();
             this.chNum = new System.Windows.Forms.TextBox();
             this.pageNumTx = new System.Windows.Forms.Label();
             this.testCmdBtn = new System.Windows.Forms.Button();
             this.planeNum = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.dramSizeList = new System.Windows.Forms.ComboBox();
             this.chNumTx = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -96,7 +96,7 @@ namespace gui
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(757, 283);
+            this.tabControl.Size = new System.Drawing.Size(757, 312);
             this.tabControl.TabIndex = 5;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -107,7 +107,7 @@ namespace gui
             this.mainTab.Location = new System.Drawing.Point(4, 34);
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mainTab.Size = new System.Drawing.Size(749, 245);
+            this.mainTab.Size = new System.Drawing.Size(749, 274);
             this.mainTab.TabIndex = 1;
             this.mainTab.Text = "Main";
             this.mainTab.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@ namespace gui
             this.groupBox1.Controls.Add(this.write_cmd_btn);
             this.groupBox1.Location = new System.Drawing.Point(373, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(359, 217);
+            this.groupBox1.Size = new System.Drawing.Size(359, 242);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
@@ -283,14 +283,14 @@ namespace gui
             // 
             this.testGroup.Controls.Add(this.pageNum);
             this.testGroup.Controls.Add(this.groupBox3);
+            this.testGroup.Controls.Add(this.label7);
             this.testGroup.Controls.Add(this.plnNum);
-            this.testGroup.Controls.Add(this.checkBx_rslt);
             this.testGroup.Controls.Add(this.testTypeBox1);
+            this.testGroup.Controls.Add(this.checkBx_rslt);
             this.testGroup.Controls.Add(this.chNum);
             this.testGroup.Controls.Add(this.pageNumTx);
             this.testGroup.Controls.Add(this.testCmdBtn);
             this.testGroup.Controls.Add(this.planeNum);
-            this.testGroup.Controls.Add(this.label7);
             this.testGroup.Controls.Add(this.dramSizeList);
             this.testGroup.Controls.Add(this.chNumTx);
             this.testGroup.Controls.Add(this.label8);
@@ -300,14 +300,14 @@ namespace gui
             this.testGroup.Controls.Add(this.label1);
             this.testGroup.Location = new System.Drawing.Point(15, 15);
             this.testGroup.Name = "testGroup";
-            this.testGroup.Size = new System.Drawing.Size(341, 217);
+            this.testGroup.Size = new System.Drawing.Size(341, 242);
             this.testGroup.TabIndex = 37;
             this.testGroup.TabStop = false;
             this.testGroup.Text = "Script test";
             // 
             // pageNum
             // 
-            this.pageNum.Location = new System.Drawing.Point(232, 83);
+            this.pageNum.Location = new System.Drawing.Point(234, 119);
             this.pageNum.Name = "pageNum";
             this.pageNum.Size = new System.Drawing.Size(77, 23);
             this.pageNum.TabIndex = 51;
@@ -317,9 +317,9 @@ namespace gui
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.timeElapsedTxBox);
-            this.groupBox3.Location = new System.Drawing.Point(134, 154);
+            this.groupBox3.Location = new System.Drawing.Point(135, 179);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(175, 46);
+            this.groupBox3.Size = new System.Drawing.Size(182, 46);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Time elapsed";
@@ -332,38 +332,54 @@ namespace gui
             this.timeElapsedTxBox.Size = new System.Drawing.Size(123, 16);
             this.timeElapsedTxBox.TabIndex = 0;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(23, 35);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 15);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Script:";
+            // 
             // plnNum
             // 
-            this.plnNum.Location = new System.Drawing.Point(232, 53);
+            this.plnNum.Location = new System.Drawing.Point(234, 89);
             this.plnNum.Name = "plnNum";
             this.plnNum.Size = new System.Drawing.Size(77, 23);
             this.plnNum.TabIndex = 50;
             this.plnNum.Text = "4";
             this.plnNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
+            // testTypeBox1
+            // 
+            this.testTypeBox1.FormattingEnabled = true;
+            this.testTypeBox1.Items.AddRange(new object[] {
+            "0. Random Rd (prefill)",
+            "1. Sequencial Rd (prefill)",
+            "2. Seq/Random Rd mixed (prefill)",
+            "3. Rd/Wr/Erase mixed"});
+            this.testTypeBox1.Location = new System.Drawing.Point(71, 31);
+            this.testTypeBox1.Name = "testTypeBox1";
+            this.testTypeBox1.Size = new System.Drawing.Size(239, 23);
+            this.testTypeBox1.TabIndex = 6;
+            this.testTypeBox1.SelectedIndexChanged += new System.EventHandler(this.testTypeBox1_SelectedIndexChanged);
+            // 
             // checkBx_rslt
             // 
             this.checkBx_rslt.AutoSize = true;
-            this.checkBx_rslt.Location = new System.Drawing.Point(196, 128);
+            this.checkBx_rslt.Checked = true;
+            this.checkBx_rslt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBx_rslt.Location = new System.Drawing.Point(197, 157);
             this.checkBx_rslt.Name = "checkBx_rslt";
             this.checkBx_rslt.Size = new System.Drawing.Size(99, 19);
             this.checkBx_rslt.TabIndex = 37;
             this.checkBx_rslt.Text = "Output result";
             this.checkBx_rslt.UseVisualStyleBackColor = true;
-            this.checkBx_rslt.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // testTypeBox1
-            // 
-            this.testTypeBox1.FormattingEnabled = true;
-            this.testTypeBox1.Location = new System.Drawing.Point(69, 82);
-            this.testTypeBox1.Name = "testTypeBox1";
-            this.testTypeBox1.Size = new System.Drawing.Size(79, 23);
-            this.testTypeBox1.TabIndex = 6;
-            this.testTypeBox1.SelectedIndexChanged += new System.EventHandler(this.testTypeBox1_SelectedIndexChanged);
+            this.checkBx_rslt.CheckedChanged += new System.EventHandler(this.checkBx_rslt_CheckedChanged);
             // 
             // chNum
             // 
-            this.chNum.Location = new System.Drawing.Point(232, 24);
+            this.chNum.Location = new System.Drawing.Point(234, 60);
             this.chNum.Name = "chNum";
             this.chNum.Size = new System.Drawing.Size(77, 23);
             this.chNum.TabIndex = 47;
@@ -374,7 +390,7 @@ namespace gui
             // pageNumTx
             // 
             this.pageNumTx.AutoSize = true;
-            this.pageNumTx.Location = new System.Drawing.Point(182, 83);
+            this.pageNumTx.Location = new System.Drawing.Point(184, 119);
             this.pageNumTx.Name = "pageNumTx";
             this.pageNumTx.Size = new System.Drawing.Size(47, 15);
             this.pageNumTx.TabIndex = 48;
@@ -382,9 +398,9 @@ namespace gui
             // 
             // testCmdBtn
             // 
-            this.testCmdBtn.Location = new System.Drawing.Point(22, 165);
+            this.testCmdBtn.Location = new System.Drawing.Point(27, 192);
             this.testCmdBtn.Name = "testCmdBtn";
-            this.testCmdBtn.Size = new System.Drawing.Size(95, 23);
+            this.testCmdBtn.Size = new System.Drawing.Size(102, 23);
             this.testCmdBtn.TabIndex = 36;
             this.testCmdBtn.Text = "Start Test";
             this.testCmdBtn.UseVisualStyleBackColor = true;
@@ -393,20 +409,11 @@ namespace gui
             // planeNum
             // 
             this.planeNum.AutoSize = true;
-            this.planeNum.Location = new System.Drawing.Point(182, 53);
+            this.planeNum.Location = new System.Drawing.Point(184, 89);
             this.planeNum.Name = "planeNum";
             this.planeNum.Size = new System.Drawing.Size(49, 15);
             this.planeNum.TabIndex = 46;
             this.planeNum.Text = "Plane#:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 86);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 15);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Script:";
             // 
             // dramSizeList
             // 
@@ -416,7 +423,7 @@ namespace gui
             "16MB",
             "32MB",
             "64MB"});
-            this.dramSizeList.Location = new System.Drawing.Point(69, 53);
+            this.dramSizeList.Location = new System.Drawing.Point(71, 89);
             this.dramSizeList.Name = "dramSizeList";
             this.dramSizeList.Size = new System.Drawing.Size(79, 23);
             this.dramSizeList.TabIndex = 34;
@@ -425,7 +432,7 @@ namespace gui
             // chNumTx
             // 
             this.chNumTx.AutoSize = true;
-            this.chNumTx.Location = new System.Drawing.Point(182, 27);
+            this.chNumTx.Location = new System.Drawing.Point(184, 63);
             this.chNumTx.Name = "chNumTx";
             this.chNumTx.Size = new System.Drawing.Size(35, 15);
             this.chNumTx.TabIndex = 45;
@@ -434,16 +441,16 @@ namespace gui
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 128);
+            this.label8.Location = new System.Drawing.Point(23, 122);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 15);
+            this.label8.Size = new System.Drawing.Size(38, 15);
             this.label8.TabIndex = 7;
-            this.label8.Text = "Time (min):";
+            this.label8.Text = "Time:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 57);
+            this.label3.Location = new System.Drawing.Point(23, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 15);
             this.label3.TabIndex = 35;
@@ -451,9 +458,9 @@ namespace gui
             // 
             // timeTxBox
             // 
-            this.timeTxBox.Location = new System.Drawing.Point(97, 125);
+            this.timeTxBox.Location = new System.Drawing.Point(71, 119);
             this.timeTxBox.Name = "timeTxBox";
-            this.timeTxBox.Size = new System.Drawing.Size(77, 23);
+            this.timeTxBox.Size = new System.Drawing.Size(79, 23);
             this.timeTxBox.TabIndex = 12;
             this.timeTxBox.Text = "10";
             this.timeTxBox.TextChanged += new System.EventHandler(this.timeTxBox_TextChanged);
@@ -467,7 +474,7 @@ namespace gui
             "64GB",
             "128GB",
             "256GB"});
-            this.devCapBox.Location = new System.Drawing.Point(69, 24);
+            this.devCapBox.Location = new System.Drawing.Point(71, 60);
             this.devCapBox.Name = "devCapBox";
             this.devCapBox.Size = new System.Drawing.Size(79, 23);
             this.devCapBox.TabIndex = 32;
@@ -476,7 +483,7 @@ namespace gui
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 28);
+            this.label1.Location = new System.Drawing.Point(23, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 33;
@@ -489,7 +496,7 @@ namespace gui
             this.tabSMART.Location = new System.Drawing.Point(4, 34);
             this.tabSMART.Name = "tabSMART";
             this.tabSMART.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMART.Size = new System.Drawing.Size(749, 245);
+            this.tabSMART.Size = new System.Drawing.Size(749, 274);
             this.tabSMART.TabIndex = 2;
             this.tabSMART.Text = "Result";
             this.tabSMART.UseVisualStyleBackColor = true;
@@ -560,7 +567,7 @@ namespace gui
             // 
             this.groupBox2.Controls.Add(this.btnClearOutput);
             this.groupBox2.Controls.Add(this.textBoxStatus);
-            this.groupBox2.Location = new System.Drawing.Point(12, 301);
+            this.groupBox2.Location = new System.Drawing.Point(16, 330);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(757, 208);
             this.groupBox2.TabIndex = 7;
@@ -572,7 +579,7 @@ namespace gui
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(784, 517);
+            this.ClientSize = new System.Drawing.Size(784, 550);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
