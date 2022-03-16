@@ -18,8 +18,8 @@ namespace gui
         private int i;
         int[] inBuffer = new int[512];
 
-        private s_dev_config s_dev;
-        private s_sript_mgr s_test;
+        private static s_dev_config s_dev;
+        private static s_sript_mgr s_test;
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +37,8 @@ namespace gui
             dramSizeList.SelectedIndex = 2; // 32MB
 
             testTypeBox1.SelectedIndex = 0;
+
+            testCmdBtn.Text = "Start test";
 
         }
 
@@ -58,7 +60,50 @@ namespace gui
         // Timer 1 sec callback
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (s_test.testSts == (int)e_state.E_STS_RUNNING)
+            {
+                // update test status
+                switch (s_test.progress) { 
+                    case 0:
+                        testStsBx.Text = "Reading data..";
+                        break;
+                    case 1:
+                        testStsBx.Text = "Writing data..";
+                        break;
+                    case 2:
+                        testStsBx.Text = "Erasing data..";
+                        break;
+                    default:
+                        break;
+                }
 
+                TimeSpan time = TimeSpan.FromSeconds(s_test.elapsedTime);
+                s_test.elapsedTime++;
+
+                //here backslash is must to tell that colon is
+                //not the part of format, it just a character that we want in output
+                string str = time.ToString(@"hh\:mm\:ss");
+                timeElapsedTxBox.Text = str;
+
+                if (s_test.elapsedTime == s_test.testTime) {
+                    vStopTestHandler();
+                }
+            }
+        }
+
+
+        private void vStopTestHandler() {
+            s_test.testSts = (int)e_state.E_STS_STOPPED;
+            testThread.Join();
+            // show the test result in the next sheet
+
+
+
+            // end, set the state to idle
+            s_test.testSts = (int)e_state.E_STS_IDLE;
+            testCmdBtn.Text = "Start test";
+            s_test.elapsedTime = 0;
+            textBoxStatus.AppendText("    Stop test, script idx: " + s_test.testType + ", time(min): " + (s_test.testTime/60) + ", Test result: " + s_test.testRslt + Environment.NewLine);
         }
 
 
@@ -221,11 +266,24 @@ namespace gui
 
         private void testCmdBtn_Click(object sender, EventArgs e)
         {
-            s_test.testTime = int.Parse((string)timeTxBox.Text);
-            s_test.testType = testTypeBox1.SelectedIndex;
-            s_test.outputRslt = (int)checkBx_rslt.CheckState;
+            if (s_test.testSts == (int)e_state.E_STS_RUNNING)
+            {
+                vStopTestHandler();
+            }
+            else
+            {
+                s_test.testTime = int.Parse((string)timeTxBox.Text) * 60; // sec
+                s_test.testType = testTypeBox1.SelectedIndex;
+                s_test.outputRslt = (int)checkBx_rslt.CheckState;
+                s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;
+                s_test.testSts = (int)e_state.E_STS_RUNNING;
 
-            textBoxStatus.AppendText("    Start test, script idx: " + s_test.testType + ", time(min): " + s_test.testTime + Environment.NewLine);
+                testCmdBtn.Text = "Stop test";
+                textBoxStatus.AppendText("    Start test, script idx: " + s_test.testType + ", time(min): " + (s_test.testTime/60) + Environment.NewLine);
+
+                testThread = new Thread(iStartTestFunc);
+                testThread.Start();
+            }
         }
 
         private void initDevBtn_Click(object sender, EventArgs e)

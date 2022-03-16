@@ -76,6 +76,7 @@ namespace gui
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
             this.btnClearOutput = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.testStsBx = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -196,7 +197,7 @@ namespace gui
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 133);
+            this.label6.Location = new System.Drawing.Point(21, 137);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 15);
             this.label6.TabIndex = 39;
@@ -205,7 +206,7 @@ namespace gui
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 104);
+            this.label5.Location = new System.Drawing.Point(19, 108);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 15);
             this.label5.TabIndex = 37;
@@ -214,7 +215,7 @@ namespace gui
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 75);
+            this.label4.Location = new System.Drawing.Point(20, 79);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 15);
             this.label4.TabIndex = 35;
@@ -223,7 +224,7 @@ namespace gui
             // lab_ch
             // 
             this.lab_ch.AutoSize = true;
-            this.lab_ch.Location = new System.Drawing.Point(16, 49);
+            this.lab_ch.Location = new System.Drawing.Point(33, 49);
             this.lab_ch.Name = "lab_ch";
             this.lab_ch.Size = new System.Drawing.Size(27, 15);
             this.lab_ch.TabIndex = 35;
@@ -316,6 +317,7 @@ namespace gui
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.testStsBx);
             this.groupBox3.Controls.Add(this.timeElapsedTxBox);
             this.groupBox3.Location = new System.Drawing.Point(135, 179);
             this.groupBox3.Name = "groupBox3";
@@ -327,15 +329,16 @@ namespace gui
             // timeElapsedTxBox
             // 
             this.timeElapsedTxBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeElapsedTxBox.Location = new System.Drawing.Point(31, 17);
+            this.timeElapsedTxBox.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.timeElapsedTxBox.Location = new System.Drawing.Point(10, 19);
             this.timeElapsedTxBox.Name = "timeElapsedTxBox";
-            this.timeElapsedTxBox.Size = new System.Drawing.Size(123, 16);
+            this.timeElapsedTxBox.Size = new System.Drawing.Size(88, 17);
             this.timeElapsedTxBox.TabIndex = 0;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(23, 35);
+            this.label7.Location = new System.Drawing.Point(26, 34);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 15);
             this.label7.TabIndex = 6;
@@ -358,9 +361,9 @@ namespace gui
             "1. Sequencial Rd (prefill)",
             "2. Seq/Random Rd mixed (prefill)",
             "3. Rd/Wr/Erase mixed"});
-            this.testTypeBox1.Location = new System.Drawing.Point(71, 31);
+            this.testTypeBox1.Location = new System.Drawing.Point(74, 31);
             this.testTypeBox1.Name = "testTypeBox1";
-            this.testTypeBox1.Size = new System.Drawing.Size(239, 23);
+            this.testTypeBox1.Size = new System.Drawing.Size(236, 23);
             this.testTypeBox1.TabIndex = 6;
             this.testTypeBox1.SelectedIndexChanged += new System.EventHandler(this.testTypeBox1_SelectedIndexChanged);
             // 
@@ -423,9 +426,9 @@ namespace gui
             "16MB",
             "32MB",
             "64MB"});
-            this.dramSizeList.Location = new System.Drawing.Point(71, 89);
+            this.dramSizeList.Location = new System.Drawing.Point(74, 89);
             this.dramSizeList.Name = "dramSizeList";
-            this.dramSizeList.Size = new System.Drawing.Size(79, 23);
+            this.dramSizeList.Size = new System.Drawing.Size(76, 23);
             this.dramSizeList.TabIndex = 34;
             this.dramSizeList.SelectedIndexChanged += new System.EventHandler(this.dramSizeList_SelectedIndexChanged);
             // 
@@ -441,16 +444,16 @@ namespace gui
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 122);
+            this.label8.Location = new System.Drawing.Point(1, 122);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 15);
+            this.label8.Size = new System.Drawing.Size(67, 15);
             this.label8.TabIndex = 7;
-            this.label8.Text = "Time:";
+            this.label8.Text = "Time(min):";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 93);
+            this.label3.Location = new System.Drawing.Point(27, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 15);
             this.label3.TabIndex = 35;
@@ -458,9 +461,9 @@ namespace gui
             // 
             // timeTxBox
             // 
-            this.timeTxBox.Location = new System.Drawing.Point(71, 119);
+            this.timeTxBox.Location = new System.Drawing.Point(74, 119);
             this.timeTxBox.Name = "timeTxBox";
-            this.timeTxBox.Size = new System.Drawing.Size(79, 23);
+            this.timeTxBox.Size = new System.Drawing.Size(76, 23);
             this.timeTxBox.TabIndex = 12;
             this.timeTxBox.Text = "1";
             this.timeTxBox.TextChanged += new System.EventHandler(this.timeTxBox_TextChanged);
@@ -474,16 +477,16 @@ namespace gui
             "64GB",
             "128GB",
             "256GB"});
-            this.devCapBox.Location = new System.Drawing.Point(71, 60);
+            this.devCapBox.Location = new System.Drawing.Point(74, 60);
             this.devCapBox.Name = "devCapBox";
-            this.devCapBox.Size = new System.Drawing.Size(79, 23);
+            this.devCapBox.Size = new System.Drawing.Size(76, 23);
             this.devCapBox.TabIndex = 32;
             this.devCapBox.SelectedIndexChanged += new System.EventHandler(this.devCapBox_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 64);
+            this.label1.Location = new System.Drawing.Point(35, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 15);
             this.label1.TabIndex = 33;
@@ -574,6 +577,15 @@ namespace gui
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Message";
             // 
+            // testStsBx
+            // 
+            this.testStsBx.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.testStsBx.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.testStsBx.Location = new System.Drawing.Point(87, 19);
+            this.testStsBx.Name = "testStsBx";
+            this.testStsBx.Size = new System.Drawing.Size(88, 17);
+            this.testStsBx.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -651,6 +663,7 @@ namespace gui
         private System.Windows.Forms.Label planeNum;
         private System.Windows.Forms.Label chNumTx;
         private System.Windows.Forms.Button tblSizeBtn;
+        private System.Windows.Forms.TextBox testStsBx;
     }
 }
 

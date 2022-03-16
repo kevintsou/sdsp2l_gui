@@ -30,8 +30,19 @@ namespace gui
     {
         // test config
         public int testTime;
+        public int elapsedTime;
         public int testType;
         public int outputRslt;
+        public int testRslt;
+        public int testSts;
+
+        // test status
+        public int ch;
+        public int blk;
+        public int page;
+        public int plane;
+        public int lun;
+        public int progress;
 
         // device info
         public int totalCmdCnt;
@@ -52,4 +63,18 @@ namespace gui
         E_CMD_ERASE
     }
 
+    public enum e_test_rslt
+    { 
+        E_RSLT_PASS = 0,
+        E_RSLT_MISCMPARE,
+        E_RSLT_TERMINATED
+    }
+
+    public enum e_state
+    { 
+        E_STS_IDLE = 0,
+        E_STS_RUNNING = 1,
+        E_STS_PAUSED = 2,
+        E_STS_STOPPED = 3
+    }
 }

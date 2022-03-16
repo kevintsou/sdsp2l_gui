@@ -28,20 +28,13 @@ namespace gui
         [DllImport("sdsp2l_algo.dll")]
         static extern int iIssueFlashCmd(int cmd, int ch, int blk, int plane, int page, IntPtr pPayload);
         [DllImport("sdsp2l_algo.dll")]
+        static extern int iIssueFlashCmdEn(int cmd, int pAddr, IntPtr pPayload);
+        [DllImport("sdsp2l_algo.dll")]
         static extern int iInitDeviceConfig(int devCap, int ddrSize, int chCnt, int planeCnt, int pageCnt, IntPtr bufPtr);
 
-
-        [DllImport("nvmeio.dll")]
-        static extern int iGetNVMeDevIdentifyData(int idx, IntPtr ptr);
-
         IntPtr bufPtr;
+        Thread testThread;
 
-        public void GetDeviceIdentifyData(int idx)
-        {
-            bufPtr = Marshal.AllocHGlobal(4096);
-            int result = iGetNVMeDevIdentifyData(idx, bufPtr);
-            //idContData = (sIdentifyControllerData)Marshal.PtrToStructure(ptr, typeof(sIdentifyControllerData));
-        }
 
         public void vInitDevConfig(int dev_size, int ddr_size)
         {
@@ -56,16 +49,72 @@ namespace gui
             textBoxStatus.AppendText("    Initailize device config, Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
         }
 
-        public void vIssueFlashCmd(int cmd, int ch, int blk, int plane, int page, IntPtr ptr) {
-            int lbn = iIssueFlashCmd(cmd, ch, blk, plane, page, ptr);
-        }
-
         public int vCalculateHitRatio() {
             long chkCnt = lpl2ChkCnt();
             long hitCnt = lp2lHitCnt();
             int hitRatio = (int)(hitCnt / chkCnt);
 
             return hitRatio;
+        }
+
+        // 0. Random Rd (prefill)
+        public int iScript_0() {
+
+            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            s_test.progress = (int)e_cmd.E_CMD_WRITE;
+            // prefill data
+            for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
+            {
+                // stop test button press
+                if (s_test.testSts == (int)e_state.E_STS_STOPPED) {
+                    break;
+                }
+                iIssueFlashCmdEn((int)e_cmd.E_CMD_WRITE, i, pPayload);
+            }
+            Marshal.FreeHGlobal(pPayload);
+            return 0;
+        }
+
+        // 1. Sequencial Rd (prefill)
+        public int iScript_1()
+        {
+
+            return 0;
+        }
+
+        // 2. Seq/Random Rd mixed(prefill)
+        public int iScript_2()
+        {
+
+            return 0;
+        }
+
+        // 3. Rd/Wr/Erase mixed
+        public int iScript_3()
+        {
+
+            return 0;
+        }
+
+        private void iStartTestFunc() {
+            switch (s_test.testType)
+            {
+                case 0:
+                    iScript_0();
+                    break;
+                case 1:
+                    iScript_1();
+                    break;
+                case 2:
+                    iScript_2();
+                    break;
+                case 3:
+                    iScript_3();
+                    break;
+                default:
+
+                    break;
+            }
         }
 
     }
