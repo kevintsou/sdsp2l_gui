@@ -53,7 +53,7 @@ namespace gui
             iInitDeviceConfig(dev_size, ddr_size, int.Parse(chNum.Text.ToString()), int.Parse(plnNum.Text.ToString()), int.Parse(pageNum.Text.ToString()), bufPtr);
             int cap = iGetDevCap();
             ddr_size = iGetDdrSize();
-            textBoxStatus.AppendText("    Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
+            textBoxStatus.AppendText("    Initailize device config, Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
         }
 
         public void vIssueFlashCmd(int cmd, int ch, int blk, int plane, int page, IntPtr ptr) {

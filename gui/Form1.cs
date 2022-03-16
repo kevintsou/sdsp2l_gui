@@ -31,7 +31,7 @@ namespace gui
             s_test = new s_sript_mgr();
 
 
-            vInitDevConfig(s_dev.dev_size, s_dev.ddr_size);
+            //vInitDevConfig(s_dev.dev_size, s_dev.ddr_size);
 
             devCapBox.SelectedIndex = 2;    // 128GB
             dramSizeList.SelectedIndex = 2; // 32MB

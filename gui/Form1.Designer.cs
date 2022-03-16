@@ -462,7 +462,7 @@ namespace gui
             this.timeTxBox.Name = "timeTxBox";
             this.timeTxBox.Size = new System.Drawing.Size(79, 23);
             this.timeTxBox.TabIndex = 12;
-            this.timeTxBox.Text = "10";
+            this.timeTxBox.Text = "1";
             this.timeTxBox.TextChanged += new System.EventHandler(this.timeTxBox_TextChanged);
             this.timeTxBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
