@@ -94,6 +94,7 @@ namespace gui
 
                 if (s_test.elapsedTime == s_test.testTime)
                 {
+                    s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;     // script test result
                     s_test.testSts = (int)e_state.E_STS_STOPPED;
                     testThread.Join();
                     vStopTestHandler();
@@ -111,7 +112,26 @@ namespace gui
 
 
         private void vStopTestHandler() {
+            string str;
 
+            switch (s_test.testRslt) { 
+                case (int)e_test_rslt.E_RSLT_PASS:
+                    str = new string("PASS TEST");
+                    break;
+                case (int)e_test_rslt.E_RSLT_MISCMPARE:
+                    str = new string("DATA MISCOMPARE");
+                    chTxBox.Text = s_test.ch.ToString();
+                    blkTxBox.Text = s_test.blk.ToString();
+                    planeTxBox.Text = s_test.plane.ToString();
+                    pageTxBox.Text = s_test.page.ToString();
+                    break;
+                case (int)e_test_rslt.E_RSLT_TERMINATED:
+                    str = new string("TEST TERMINATED");
+                    break;
+                default:
+                    str = new string("");
+                    break;
+            }
             // show the test result in the next sheet
 
 
@@ -125,7 +145,7 @@ namespace gui
             s_test.testSts = (int)e_state.E_STS_IDLE;
 
             testCmdBtn.Text = "Start test";
-            textBoxStatus.AppendText("    Stop test, script: " + s_test.typeName + ", time(min): " + (s_test.testTime/60) + ", Test result: " + s_test.testRslt + Environment.NewLine);
+            textBoxStatus.AppendText("    Stop test, script: " + s_test.typeName + ", time(min): " + (s_test.testTime/60) + ", " + str + Environment.NewLine);
         }
 
 
@@ -296,6 +316,7 @@ namespace gui
             if (s_test.testSts == (int)e_state.E_STS_RUNNING)
             {
                 s_test.testSts = (int)e_state.E_STS_STOPPED;
+                s_test.testRslt = (int)e_test_rslt.E_RSLT_TERMINATED;
             }
             else
             {
@@ -371,6 +392,11 @@ namespace gui
             int tblSize = iGetTableSize();
             tblSize = (tblSize / 1024) / 1024;
             textBoxStatus.AppendText("    Total table size (MB): " + tblSize.ToString() + Environment.NewLine);
+        }
+
+        private void pageNum_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

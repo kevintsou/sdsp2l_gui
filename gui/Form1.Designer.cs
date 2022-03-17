@@ -313,6 +313,7 @@ namespace gui
             this.pageNum.Size = new System.Drawing.Size(77, 23);
             this.pageNum.TabIndex = 51;
             this.pageNum.Text = "1024";
+            this.pageNum.TextChanged += new System.EventHandler(this.pageNum_TextChanged);
             this.pageNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.chTxBox_KeyPress);
             // 
             // groupBox3
@@ -559,7 +560,7 @@ namespace gui
             // timer_300MS
             // 
             this.timer_300MS.Enabled = true;
-            this.timer_300MS.Interval = 300;
+            this.timer_300MS.Interval = 50;
             this.timer_300MS.Tick += new System.EventHandler(this.timer_300mis_Tick);
             // 
             // btnClearOutput
