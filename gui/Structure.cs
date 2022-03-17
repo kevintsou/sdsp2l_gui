@@ -35,13 +35,24 @@ namespace gui
         public int outputRslt;
         public int testRslt;
         public int testSts;
+        public string typeName;
 
         // test status
         public int ch;
         public int blk;
         public int page;
         public int plane;
-        public int lun;
+
+        public int chBitNum;
+        public int blkBitNum;
+        public int pageBitNum;
+        public int planeBitNum;
+
+        public int chSftCnt;
+        public int blkSftCnt;
+        public int pageSftCnt;
+        public int planeSftCnt;
+
         public int progress;
 
         // device info
@@ -62,6 +73,8 @@ namespace gui
         E_CMD_WRITE,
         E_CMD_ERASE,
         E_CMD_NONE,
+        E_CMD_SEQ_RD,
+        E_CMD_RD_RD,
     }
 
     public enum e_test_rslt
@@ -73,9 +86,9 @@ namespace gui
 
     public enum e_state
     { 
-        E_STS_IDLE = 0,
-        E_STS_RUNNING = 1,
-        E_STS_PAUSED = 2,
-        E_STS_STOPPED = 3
+        E_STS_IDLE = 0,     // ready to accept new cmd
+        E_STS_RUNNING = 1,  // test on going
+        E_STS_PAUSED = 2,   // test pause
+        E_STS_STOPPED = 3   // thread stop , wait for join
     }
 }

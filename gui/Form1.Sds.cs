@@ -42,8 +42,23 @@ namespace gui
             if (bufPtr.ToInt32() == 0) {
                 bufPtr = Marshal.AllocHGlobal(0x06300000*2);
             }
-            
-            iInitDeviceConfig(dev_size, ddr_size, int.Parse(chNum.Text.ToString()), int.Parse(plnNum.Text.ToString()), int.Parse(pageNum.Text.ToString()), bufPtr);
+
+            s_dev.chCnt = int.Parse(chNum.Text.ToString());
+            s_dev.pageCnt = int.Parse(pageNum.Text.ToString());
+            s_dev.planeCnt = int.Parse(plnNum.Text.ToString());
+            s_dev.blkCnt = ((s_dev.dev_size * 1024 * 1024) / 16) / (s_dev.chCnt * s_dev.pageCnt * s_dev.planeCnt);
+
+            s_dev.chBitNum = (int)Math.Log(s_dev.chCnt, 2.0); 
+            s_dev.blkBitNum = (int)Math.Log(s_dev.blkCnt, 2.0);
+            s_dev.pageBitNum = (int)Math.Log(s_dev.pageCnt, 2.0);
+            s_dev.planeBitNum = (int)Math.Log(s_dev.planeCnt, 2.0);
+
+            s_dev.pageSftCnt = 0;
+            s_dev.planeSftCnt = s_dev.pageSftCnt + s_dev.pageBitNum;
+            s_dev.blkSftCnt = s_dev.planeSftCnt + s_dev.planeBitNum;
+            s_dev.chSftCnt = s_dev.blkSftCnt + s_dev.blkBitNum;
+
+            iInitDeviceConfig(dev_size, ddr_size, s_dev.chCnt, s_dev.planeCnt, s_dev.pageCnt, bufPtr);
             int cap = iGetDevCap();
             ddr_size = iGetDdrSize();
             textBoxStatus.AppendText("    Initailize device config, Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
@@ -57,12 +72,32 @@ namespace gui
             return hitRatio;
         }
 
+        public int iGetCh(int pAddr) {
+            return ((pAddr >> s_dev.chSftCnt) & (s_dev.chBitNum - 1));
+        }
+
+        public int iGetBlk(int pAddr)
+        {
+            return ((pAddr >> s_dev.blkSftCnt) & (s_dev.blkBitNum - 1));
+        }
+
+        public int iGetPlane(int pAddr)
+        {
+            return ((pAddr >> s_dev.planeSftCnt) & (s_dev.planeBitNum - 1));
+        }
+
+        public int iGetPage(int pAddr)
+        {
+            return ((pAddr >> s_dev.pageSftCnt) & (s_dev.pageBitNum - 1));
+        }
+
+
         // 0. Random Rd (prefill)
         public int iScript_0() {
 
             IntPtr pPayload = Marshal.AllocHGlobal(4);
             s_test.progress = (int)e_cmd.E_CMD_WRITE;
-            int lbn = 0, dataLbn = 0;
+            int lbn = 0, dataLbn = 0, loop = 10;
 
             // prefill data
             for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
@@ -71,35 +106,50 @@ namespace gui
                 if (s_test.testSts == (int)e_state.E_STS_STOPPED) {
                     break;
                 }
+
+                s_test.ch = iGetCh(i);
+                s_test.blk = iGetBlk(i);
+                s_test.plane = iGetPlane(i);
+                s_test.page = iGetPage(i);
+
                 iIssueFlashCmdEn((int)e_cmd.E_CMD_WRITE, i, pPayload);
             }
        
-            s_test.progress = (int)e_cmd.E_CMD_READ;
-            for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
+            // seq read test
+            s_test.progress = (int)e_cmd.E_CMD_SEQ_RD;
+            while (loop != 0)
             {
-                // stop test button press
-                if (s_test.testSts == (int)e_state.E_STS_STOPPED)
+                for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
                 {
-                    break;
-                }
-                lbn = iIssueFlashCmdEn((int)e_cmd.E_CMD_READ, i, pPayload);
-                Marshal.Copy(pPayload, inBuffer, 0, 4);
-                dataLbn = inBuffer[0];
 
-                if (lbn != dataLbn) {
-                    s_test.testSts = (int)e_state.E_STS_STOPPED;
-                    s_test.testRslt = (int)e_test_rslt.E_RSLT_MISCMPARE;
-                    Marshal.FreeHGlobal(pPayload);
-                    vStopTestHandler();
-                    return 1;
+                    s_test.ch = iGetCh(i);
+                    s_test.blk = iGetBlk(i);
+                    s_test.plane = iGetPlane(i);
+                    s_test.page = iGetPage(i);
+
+                    // stop test button press
+                    if (s_test.testSts == (int)e_state.E_STS_STOPPED)
+                    {
+                        break;
+                    }
+                    lbn = iIssueFlashCmdEn((int)e_cmd.E_CMD_READ, i, pPayload);
+                    Marshal.Copy(pPayload, inBuffer, 0, 4);
+                    dataLbn = inBuffer[0];
+
+                    if (lbn != dataLbn)
+                    {
+                        s_test.testSts = (int)e_state.E_STS_STOPPED;
+                        s_test.testRslt = (int)e_test_rslt.E_RSLT_MISCMPARE;
+                        Marshal.FreeHGlobal(pPayload);
+                        return 1;
+                    }
                 }
+                loop--;
             }
+            s_test.progress = (int)e_cmd.E_CMD_NONE;    // sript current progress
+            s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;     // script test result
+            s_test.testSts = (int)e_state.E_STS_STOPPED;   // test finished, wait for join
 
-            s_test.progress = (int)e_cmd.E_CMD_NONE;
-            s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;
-            
-            vStopTestHandler();
-            
             Marshal.FreeHGlobal(pPayload);
             return 0;
         }

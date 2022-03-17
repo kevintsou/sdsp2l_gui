@@ -366,8 +366,8 @@ namespace gui
             // 
             this.testTypeBox1.FormattingEnabled = true;
             this.testTypeBox1.Items.AddRange(new object[] {
-            "0. Random Rd (prefill)",
-            "1. Sequencial Rd (prefill)",
+            "0. Sequencial Rd (prefill)",
+            "1. Random Rd (prefill)",
             "2. Seq/Random Rd mixed (prefill)",
             "3. Rd/Wr/Erase mixed"});
             this.testTypeBox1.Location = new System.Drawing.Point(74, 31);

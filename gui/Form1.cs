@@ -63,17 +63,21 @@ namespace gui
             if (s_test.testSts == (int)e_state.E_STS_RUNNING)
             {
                 // update test status
-                switch (s_test.progress) { 
-                    case 0:
-                        testStsBx.Text = "Reading data..";
+                switch (s_test.progress)
+                {
+                    case (int)e_cmd.E_CMD_SEQ_RD:
+                        testStsBx.Text = "Seq Read..";
                         break;
-                    case 1:
+                    case (int)e_cmd.E_CMD_RD_RD:
+                        testStsBx.Text = "Random Read..";
+                        break;
+                    case (int)e_cmd.E_CMD_WRITE:
                         testStsBx.Text = "Writing data..";
                         break;
-                    case 2:
+                    case (int)e_cmd.E_CMD_ERASE:
                         testStsBx.Text = "Erasing data..";
                         break;
-                    case 3:
+                    case (int)e_cmd.E_CMD_NONE:
                         testStsBx.Text = "Idle..";
                         break;
                     default:
@@ -88,25 +92,40 @@ namespace gui
                 string str = time.ToString(@"hh\:mm\:ss");
                 timeElapsedTxBox.Text = str;
 
-                if (s_test.elapsedTime == s_test.testTime) {
+                if (s_test.elapsedTime == s_test.testTime)
+                {
+                    s_test.testSts = (int)e_state.E_STS_STOPPED;
+                    testThread.Join();
                     vStopTestHandler();
                 }
+            }
+            else if (s_test.testSts == (int)e_state.E_STS_STOPPED) {
+                testThread.Join();
+                vStopTestHandler();
+            }
+            else if (s_test.testSts == (int)e_state.E_STS_IDLE)
+            {
+                testStsBx.Text = " ";   // clear test state
             }
         }
 
 
         private void vStopTestHandler() {
-            s_test.testSts = (int)e_state.E_STS_STOPPED;
-            testThread.Join();
+
             // show the test result in the next sheet
 
 
 
             // end, set the state to idle
-            s_test.testSts = (int)e_state.E_STS_IDLE;
-            testCmdBtn.Text = "Start test";
+            s_test.ch = 0;
+            s_test.blk = 0;
+            s_test.plane = 0;
+            s_test.page = 0;
             s_test.elapsedTime = 0;
-            textBoxStatus.AppendText("    Stop test, script idx: " + s_test.testType + ", time(min): " + (s_test.testTime/60) + ", Test result: " + s_test.testRslt + Environment.NewLine);
+            s_test.testSts = (int)e_state.E_STS_IDLE;
+
+            testCmdBtn.Text = "Start test";
+            textBoxStatus.AppendText("    Stop test, script: " + s_test.typeName + ", time(min): " + (s_test.testTime/60) + ", Test result: " + s_test.testRslt + Environment.NewLine);
         }
 
 
@@ -118,7 +137,12 @@ namespace gui
 
         private void timer_300mis_Tick(object sender, EventArgs e)
         {
-          
+            if (s_test.testSts == (int)e_state.E_STS_RUNNING) {
+                chTxBox.Text = s_test.ch.ToString();
+                blkTxBox.Text = s_test.blk.ToString();
+                planeTxBox.Text = s_test.plane.ToString();
+                pageTxBox.Text = s_test.page.ToString();
+            }
         }
 
         private void timeTxBox_TextChanged(object sender, EventArgs e)
@@ -271,7 +295,7 @@ namespace gui
         {
             if (s_test.testSts == (int)e_state.E_STS_RUNNING)
             {
-                vStopTestHandler();
+                s_test.testSts = (int)e_state.E_STS_STOPPED;
             }
             else
             {
@@ -281,10 +305,28 @@ namespace gui
                 s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;
                 s_test.testSts = (int)e_state.E_STS_RUNNING;
 
-                testCmdBtn.Text = "Stop test";
-                textBoxStatus.AppendText("    Start test, script idx: " + s_test.testType + ", time(min): " + (s_test.testTime/60) + Environment.NewLine);
+                switch (s_test.testType)
+                {
+                    case 0:
+                        s_test.typeName = new string("0. Sequencial Rd(prefill)");
+                        break;
+                    case 1:
+                        s_test.typeName = new string("1. Random Rd (prefill)");
+                        break;
+                    case 2:
+                        s_test.typeName = new string("2. Seq/Random Rd mixed (prefill)");
+                        break;
+                    case 3:
+                        s_test.typeName = new string("3. Rd/Wr/Erase mixed");
+                        break;
+                    default:
 
-                //iScript_0();
+                        break;
+                }
+
+                testCmdBtn.Text = "Stop test";
+                textBoxStatus.AppendText("    Start test, script: " + s_test.typeName + ", time(min): " + (s_test.testTime / 60) + Environment.NewLine);
+                
                 testThread = new Thread(iStartTestFunc);
                 testThread.Start();
             }
