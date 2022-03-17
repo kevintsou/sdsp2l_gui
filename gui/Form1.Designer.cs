@@ -560,7 +560,7 @@ namespace gui
             // timer_300MS
             // 
             this.timer_300MS.Enabled = true;
-            this.timer_300MS.Interval = 50;
+            this.timer_300MS.Interval = 30;
             this.timer_300MS.Tick += new System.EventHandler(this.timer_300mis_Tick);
             // 
             // btnClearOutput
