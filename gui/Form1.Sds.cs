@@ -137,7 +137,7 @@ namespace gui
         public int iScript_0() {
 
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 1;
+            int lbn = 0, dataLbn = 0, loop = 5000;
 
             iPrefillData();
 
@@ -185,7 +185,7 @@ namespace gui
         public int iScript_1()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 1;
+            int lbn = 0, dataLbn = 0, loop = 5000;
             int idx = 0;
 
             iPrefillData();
@@ -236,7 +236,7 @@ namespace gui
         public int iScript_2()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 1;
+            int lbn = 0, dataLbn = 0, loop = 5000;
             int idx = 0;
 
             iPrefillData();
@@ -317,7 +317,7 @@ namespace gui
         public int iScript_3()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 1;
+            int lbn = 0, dataLbn = 0, loop = 5000;
 
             while (loop != 0)
             {
