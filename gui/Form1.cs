@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Management;
 
 namespace gui
 {
@@ -110,6 +102,45 @@ namespace gui
             }
         }
 
+        private void vListViewHandle() {
+
+            listView1.GridLines = true;
+            listView1.FullRowSelect = true;
+
+            listView1.View = View.Details;
+            listView1.Scrollable = true;
+            listView1.MultiSelect = false;
+            listView1.Clear();
+
+            listView1.Columns.Add("CH", 40, HorizontalAlignment.Center);
+            listView1.Columns.Add("IO Burst Cnt", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("Read Cnt", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("Write Cnt", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("Erase Cnt", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("Chk Cnt", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("Hit Cnt", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("Hit Rate", 80, HorizontalAlignment.Center);
+
+            for (int i = 0; i < s_dev.chCnt; i++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Clear();
+                item.Text = i.ToString();
+                item.SubItems.Add(s_test.chBurstCnt[i].ToString());
+
+                if (i == 0)
+                {
+                    item.SubItems.Add(i.ToString());
+                    item.SubItems.Add(i.ToString());
+                    item.SubItems.Add(i.ToString());
+                    item.SubItems.Add(s_test.bitChkCnt.ToString());
+                    item.SubItems.Add(s_test.bitHitCnt.ToString());
+                    item.SubItems.Add(s_test.hitRate.ToString());
+                }
+
+                listView1.Items.Add(item);
+            }
+        }
 
         private void vStopTestHandler() {
             string str;
@@ -117,6 +148,20 @@ namespace gui
             switch (s_test.testRslt) { 
                 case (int)e_test_rslt.E_RSLT_PASS:
                     str = new string("PASS TEST");
+
+                    // show the test result in the next sheet
+                    s_test.bitChkCnt = lpl2ChkCnt();
+                    s_test.bitHitCnt = lp2lHitCnt();
+                    s_test.hitRate = (float) s_test.bitHitCnt / s_test.bitChkCnt;
+
+                    for (int i = 0; i < s_dev.chCnt; i++)
+                    {
+                        s_test.chBurstCnt[i] = iGetIoBurstCnt(i);
+                    }
+
+                    vListViewHandle();
+                    // TBD , read count table, erase count table
+                    tabControl.SelectedTab = tabControl.TabPages[1];       // switch to result page
                     break;
                 case (int)e_test_rslt.E_RSLT_MISCMPARE:
                     str = new string("DATA MISCOMPARE");
@@ -132,8 +177,6 @@ namespace gui
                     str = new string("");
                     break;
             }
-            // show the test result in the next sheet
-
 
 
             // end, set the state to idle
@@ -325,6 +368,8 @@ namespace gui
                 s_test.outputRslt = (int)checkBx_rslt.CheckState;
                 s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;
                 s_test.testSts = (int)e_state.E_STS_RUNNING;
+                
+                iClearChkHitCnt();
 
                 switch (s_test.testType)
                 {
@@ -398,5 +443,48 @@ namespace gui
         {
 
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            listView1.GridLines = true;
+            listView1.FullRowSelect = true;
+
+            listView1.View = View.Details;
+            listView1.Scrollable = true;
+            listView1.MultiSelect = false;
+
+            listView1.Columns.Add("CH", 50, HorizontalAlignment.Center);
+            listView1.Columns.Add("IO Burst Cnt", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Read Cnt", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Write Cnt", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Erase Cnt", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Cht Cnt", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Hit Rate", 100, HorizontalAlignment.Center);
+            
+            for (int i = 0; i < s_dev.chCnt; i++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Clear();
+                item.Text = i.ToString();
+                item.SubItems.Add(i.ToString());
+
+                if (i == 0) {
+                    item.SubItems.Add(i.ToString());
+                    item.SubItems.Add(i.ToString());
+                    item.SubItems.Add(i.ToString());
+                    item.SubItems.Add(i.ToString());
+                    item.SubItems.Add(i.ToString());
+                }
+
+                listView1.Items.Add(item);
+            }
+        }
+
+
     }
 }

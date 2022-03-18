@@ -35,6 +35,11 @@ namespace gui
         static extern IntPtr iGetEraseCntTable(int ch);
         [DllImport("sdsp2l_algo.dll")]
         static extern IntPtr iGetReadCntTable(int ch);
+        [DllImport("sdsp2l_algo.dll")]
+        static extern int iGetIoBurstCnt(int ch);
+        [DllImport("sdsp2l_algo.dll")]
+        static extern int iClearChkHitCnt();
+
 
         IntPtr bufPtr;
         Thread testThread;
@@ -44,7 +49,7 @@ namespace gui
         {
             //IntPtr ptr = Marshal.AllocHGlobal(0x06208400); // 128GB dev , full dram, max memory required
             if (bufPtr.ToInt32() == 0) {
-                bufPtr = Marshal.AllocHGlobal(0x06300000*2);
+                bufPtr = Marshal.AllocHGlobal(0x06300000*4);
             }
 
             s_dev.chCnt = int.Parse(chNum.Text.ToString());
@@ -66,6 +71,12 @@ namespace gui
             int cap = iGetDevCap();
             ddr_size = iGetDdrSize();
             textBoxStatus.AppendText("    Initailize device config, Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
+
+            // enduration evaluation variable
+            s_test.chBurstCnt = new int[s_dev.chCnt];
+            s_test.eraseCnt = new int[s_dev.chCnt * s_dev.blkCnt];
+            s_test.readCnt = new int[s_dev.chCnt * s_dev.blkCnt];
+
         }
 
         public int vCalculateHitRatio() {
@@ -126,7 +137,7 @@ namespace gui
         public int iScript_0() {
 
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 5000;
+            int lbn = 0, dataLbn = 0, loop = 1;
 
             iPrefillData();
 
@@ -174,7 +185,7 @@ namespace gui
         public int iScript_1()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 5000;
+            int lbn = 0, dataLbn = 0, loop = 1;
             int idx = 0;
 
             iPrefillData();
@@ -225,7 +236,7 @@ namespace gui
         public int iScript_2()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 5000;
+            int lbn = 0, dataLbn = 0, loop = 1;
             int idx = 0;
 
             iPrefillData();
@@ -306,7 +317,7 @@ namespace gui
         public int iScript_3()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            int lbn = 0, dataLbn = 0, loop = 5000;
+            int lbn = 0, dataLbn = 0, loop = 1;
 
             while (loop != 0)
             {

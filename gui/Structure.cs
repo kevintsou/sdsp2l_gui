@@ -59,12 +59,13 @@ namespace gui
         public int totalCmdCnt;
         public int totalWrCnt;
         public int totalRdCnt;
-        public int totalErsCnt;
-        public int bitChkCnt;
-        public int bitHitCnt;
-        public int hitRate;
-        public int[][] eraseCnt; // erase count of each die block (target)
-        public int[][] readCnt;  // read count of each die block (target)
+
+        public long bitChkCnt;
+        public long bitHitCnt;
+        public float hitRate;
+        public int[] chBurstCnt;
+        public int[] eraseCnt; // erase count of each die block (target)
+        public int[] readCnt;  // read count of each die block (target)
     }
 
     public enum e_cmd

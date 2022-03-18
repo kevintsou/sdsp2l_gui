@@ -70,8 +70,8 @@ namespace gui
             this.devCapBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabSMART = new System.Windows.Forms.TabPage();
-            this.btn_clearSmart = new System.Windows.Forms.Button();
-            this.listViewSmart = new System.Windows.Forms.ListView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.timer_1sec = new System.Windows.Forms.Timer(this.components);
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
@@ -504,8 +504,8 @@ namespace gui
             // 
             // tabSMART
             // 
-            this.tabSMART.Controls.Add(this.btn_clearSmart);
-            this.tabSMART.Controls.Add(this.listViewSmart);
+            this.tabSMART.Controls.Add(this.listView1);
+            this.tabSMART.Controls.Add(this.button1);
             this.tabSMART.Location = new System.Drawing.Point(4, 34);
             this.tabSMART.Name = "tabSMART";
             this.tabSMART.Padding = new System.Windows.Forms.Padding(3);
@@ -516,24 +516,24 @@ namespace gui
             this.tabSMART.Click += new System.EventHandler(this.tabSMART_Click);
             this.tabSMART.Enter += new System.EventHandler(this.tabSMART_Enter);
             // 
-            // btn_clearSmart
+            // listView1
             // 
-            this.btn_clearSmart.Location = new System.Drawing.Point(689, 298);
-            this.btn_clearSmart.Name = "btn_clearSmart";
-            this.btn_clearSmart.Size = new System.Drawing.Size(113, 25);
-            this.btn_clearSmart.TabIndex = 1;
-            this.btn_clearSmart.Text = "Clear Smart";
-            this.btn_clearSmart.UseVisualStyleBackColor = true;
-            this.btn_clearSmart.Visible = false;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(20, 18);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(711, 208);
+            this.listView1.TabIndex = 47;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // listViewSmart
+            // button1
             // 
-            this.listViewSmart.HideSelection = false;
-            this.listViewSmart.Location = new System.Drawing.Point(13, 17);
-            this.listViewSmart.Name = "listViewSmart";
-            this.listViewSmart.Size = new System.Drawing.Size(804, 318);
-            this.listViewSmart.TabIndex = 0;
-            this.listViewSmart.UseCompatibleStateImageBehavior = false;
+            this.button1.Location = new System.Drawing.Point(640, 232);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 46;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // textBoxStatus
             // 
@@ -624,8 +624,6 @@ namespace gui
         private System.Windows.Forms.Timer timer_300MS;
         private System.Windows.Forms.Button btnClearOutput;
         private System.Windows.Forms.TabPage tabSMART;
-        private System.Windows.Forms.Button btn_clearSmart;
-        private System.Windows.Forms.ListView listViewSmart;
         private System.Windows.Forms.TabPage mainTab;
         private System.Windows.Forms.Button ddr_size_btn;
         private System.Windows.Forms.Button dev_cap_btn;
@@ -665,6 +663,8 @@ namespace gui
         private System.Windows.Forms.Label chNumTx;
         private System.Windows.Forms.Button tblSizeBtn;
         private System.Windows.Forms.TextBox testStsBx;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 
