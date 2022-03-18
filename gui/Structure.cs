@@ -63,7 +63,7 @@ namespace gui
         public long bitChkCnt;
         public long bitHitCnt;
         public float hitRate;
-        public int[] chBurstCnt;
+        public long[] chBurstCnt;
         public int[] eraseCnt; // erase count of each die block (target)
         public int[] readCnt;  // read count of each die block (target)
     }

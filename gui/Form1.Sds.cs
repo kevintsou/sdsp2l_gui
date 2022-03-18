@@ -16,7 +16,7 @@ namespace gui
     partial class Form1
     {
         [DllImport("sdsp2l_algo.dll")]
-        static extern long lp2lHitCnt();
+        static extern int lp2lHitCnt();
         [DllImport("sdsp2l_algo.dll")]
         static extern long lpl2ChkCnt();
         [DllImport("sdsp2l_algo.dll")]
@@ -36,7 +36,7 @@ namespace gui
         [DllImport("sdsp2l_algo.dll")]
         static extern IntPtr iGetReadCntTable(int ch);
         [DllImport("sdsp2l_algo.dll")]
-        static extern int iGetIoBurstCnt(int ch);
+        static extern long iGetIoBurstCnt(int ch);
         [DllImport("sdsp2l_algo.dll")]
         static extern int iClearChkHitCnt();
 
@@ -73,18 +73,10 @@ namespace gui
             textBoxStatus.AppendText("    Initailize device config, Dev Cap: " + cap.ToString() + "GB,    Dram: " + ddr_size.ToString() + "MB" + Environment.NewLine);
 
             // enduration evaluation variable
-            s_test.chBurstCnt = new int[s_dev.chCnt];
+            s_test.chBurstCnt = new long[s_dev.chCnt];
             s_test.eraseCnt = new int[s_dev.chCnt * s_dev.blkCnt];
             s_test.readCnt = new int[s_dev.chCnt * s_dev.blkCnt];
 
-        }
-
-        public int vCalculateHitRatio() {
-            long chkCnt = lpl2ChkCnt();
-            long hitCnt = lp2lHitCnt();
-            int hitRatio = (int)(hitCnt / chkCnt);
-
-            return hitRatio;
         }
 
         public int iGetCh(int pAddr) {

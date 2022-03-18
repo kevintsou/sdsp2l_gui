@@ -112,30 +112,26 @@ namespace gui
             listView1.MultiSelect = false;
             listView1.Clear();
 
-            listView1.Columns.Add("CH", 40, HorizontalAlignment.Center);
-            listView1.Columns.Add("IO Burst Cnt", 80, HorizontalAlignment.Center);
+            //listView1.Columns.Add("CH", 40, HorizontalAlignment.Center);
+            //listView1.Columns.Add("IO Burst Cnt", 80, HorizontalAlignment.Center);
             listView1.Columns.Add("Read Cnt", 80, HorizontalAlignment.Center);
             listView1.Columns.Add("Write Cnt", 80, HorizontalAlignment.Center);
             listView1.Columns.Add("Erase Cnt", 80, HorizontalAlignment.Center);
-            listView1.Columns.Add("Chk Cnt", 80, HorizontalAlignment.Center);
-            listView1.Columns.Add("Hit Cnt", 80, HorizontalAlignment.Center);
-            listView1.Columns.Add("Hit Rate", 80, HorizontalAlignment.Center);
+            //listView1.Columns.Add("Hit Rate", 80, HorizontalAlignment.Center);
 
-            for (int i = 0; i < s_dev.chCnt; i++)
+            //for (int i = 0; i < s_dev.chCnt; i++)
             {
                 ListViewItem item = new ListViewItem();
                 item.SubItems.Clear();
-                item.Text = i.ToString();
-                item.SubItems.Add(s_test.chBurstCnt[i].ToString());
+                //item.Text = i.ToString();
+                //item.SubItems.Add(s_test.chBurstCnt[i].ToString());
 
-                if (i == 0)
+                //if (i == 0)
                 {
-                    item.SubItems.Add(i.ToString());
-                    item.SubItems.Add(i.ToString());
-                    item.SubItems.Add(i.ToString());
-                    item.SubItems.Add(s_test.bitChkCnt.ToString());
-                    item.SubItems.Add(s_test.bitHitCnt.ToString());
-                    item.SubItems.Add(s_test.hitRate.ToString());
+                    //item.SubItems.Add(i.ToString());
+                    //item.SubItems.Add(i.ToString());
+                    //item.SubItems.Add(i.ToString());
+                    //item.SubItems.Add(s_test.hitRate.ToString());
                 }
 
                 listView1.Items.Add(item);
@@ -150,9 +146,9 @@ namespace gui
                     str = new string("PASS TEST");
 
                     // show the test result in the next sheet
-                    s_test.bitChkCnt = lpl2ChkCnt();
-                    s_test.bitHitCnt = lp2lHitCnt();
-                    s_test.hitRate = (float) s_test.bitHitCnt / s_test.bitChkCnt;
+                    //s_test.bitChkCnt = lpl2ChkCnt();
+                    //s_test.bitHitCnt = lp2lHitCnt();
+                    s_test.hitRate = lp2lHitCnt();
 
                     for (int i = 0; i < s_dev.chCnt; i++)
                     {

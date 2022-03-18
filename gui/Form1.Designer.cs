@@ -71,7 +71,6 @@ namespace gui
             this.label1 = new System.Windows.Forms.Label();
             this.tabSMART = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.timer_1sec = new System.Windows.Forms.Timer(this.components);
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
@@ -505,7 +504,6 @@ namespace gui
             // tabSMART
             // 
             this.tabSMART.Controls.Add(this.listView1);
-            this.tabSMART.Controls.Add(this.button1);
             this.tabSMART.Location = new System.Drawing.Point(4, 34);
             this.tabSMART.Name = "tabSMART";
             this.tabSMART.Padding = new System.Windows.Forms.Padding(3);
@@ -524,16 +522,6 @@ namespace gui
             this.listView1.Size = new System.Drawing.Size(711, 208);
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(640, 232);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 46;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // textBoxStatus
             // 
@@ -663,7 +651,6 @@ namespace gui
         private System.Windows.Forms.Label chNumTx;
         private System.Windows.Forms.Button tblSizeBtn;
         private System.Windows.Forms.TextBox testStsBx;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListView listView1;
     }
 }
