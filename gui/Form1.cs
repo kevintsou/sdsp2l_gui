@@ -66,10 +66,10 @@ namespace gui
                 switch (s_test.progress)
                 {
                     case (int)e_cmd.E_CMD_SEQ_RD:
-                        testStsBx.Text = "Seq Read..";
+                        testStsBx.Text = "Seq Read Chk..";
                         break;
                     case (int)e_cmd.E_CMD_RD_RD:
-                        testStsBx.Text = "Random Read..";
+                        testStsBx.Text = "Random Read Chk..";
                         break;
                     case (int)e_cmd.E_CMD_WRITE:
                         testStsBx.Text = "Writing data..";

@@ -330,19 +330,19 @@ namespace gui
             // testStsBx
             // 
             this.testStsBx.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.testStsBx.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.testStsBx.Location = new System.Drawing.Point(87, 19);
+            this.testStsBx.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.testStsBx.Location = new System.Drawing.Point(65, 19);
             this.testStsBx.Name = "testStsBx";
-            this.testStsBx.Size = new System.Drawing.Size(88, 17);
+            this.testStsBx.Size = new System.Drawing.Size(111, 16);
             this.testStsBx.TabIndex = 1;
             // 
             // timeElapsedTxBox
             // 
             this.timeElapsedTxBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.timeElapsedTxBox.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.timeElapsedTxBox.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.timeElapsedTxBox.Location = new System.Drawing.Point(10, 19);
             this.timeElapsedTxBox.Name = "timeElapsedTxBox";
-            this.timeElapsedTxBox.Size = new System.Drawing.Size(88, 17);
+            this.timeElapsedTxBox.Size = new System.Drawing.Size(88, 16);
             this.timeElapsedTxBox.TabIndex = 0;
             // 
             // label7

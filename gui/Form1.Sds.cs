@@ -112,6 +112,8 @@ namespace gui
 
                 iIssueFlashCmdEn((int)e_cmd.E_CMD_WRITE, i, pPayload);
             }
+
+            Marshal.FreeHGlobal(pPayload);
             return 0;
         }
 
@@ -120,7 +122,6 @@ namespace gui
         public int iScript_0() {
 
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            s_test.progress = (int)e_cmd.E_CMD_WRITE;
             int lbn = 0, dataLbn = 0, loop = 5000;
 
             iPrefillData();
@@ -169,7 +170,6 @@ namespace gui
         public int iScript_1()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            s_test.progress = (int)e_cmd.E_CMD_WRITE;
             int lbn = 0, dataLbn = 0, loop = 5000;
             int idx = 0;
 
@@ -221,7 +221,6 @@ namespace gui
         public int iScript_2()
         {
             IntPtr pPayload = Marshal.AllocHGlobal(4);
-            s_test.progress = (int)e_cmd.E_CMD_WRITE;
             int lbn = 0, dataLbn = 0, loop = 5000;
             int idx = 0;
 
@@ -302,7 +301,94 @@ namespace gui
         // 3. Rd/Wr/Erase mixed
         public int iScript_3()
         {
+            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            int lbn = 0, dataLbn = 0, loop = 5000;
 
+            while (loop != 0)
+            {
+                iPrefillData();
+
+                s_test.progress = (int)e_cmd.E_CMD_SEQ_RD;
+                for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
+                {
+
+                    s_test.ch = iGetCh(i);
+                    s_test.blk = iGetBlk(i);
+                    s_test.plane = iGetPlane(i);
+                    s_test.page = iGetPage(i);
+
+                    // stop test button press
+                    if (s_test.testSts == (int)e_state.E_STS_STOPPED)
+                    {
+                        return 0;
+                    }
+                    lbn = iIssueFlashCmdEn((int)e_cmd.E_CMD_READ, i, pPayload);
+                    Marshal.Copy(pPayload, inBuffer, 0, 4);
+                    dataLbn = inBuffer[0];
+
+                    if (lbn != dataLbn)
+                    {
+                        s_test.testSts = (int)e_state.E_STS_STOPPED;
+                        s_test.testRslt = (int)e_test_rslt.E_RSLT_MISCMPARE;
+                        Marshal.FreeHGlobal(pPayload);
+                        return 1;
+                    }
+                }
+
+                s_test.progress = (int)e_cmd.E_CMD_ERASE;
+                for (int j = 0; j < s_dev.chCnt; j++)
+                {
+                    for (int i = 0; i < (s_dev.blkCnt); i++)
+                    {
+                        s_test.ch = j;
+                        s_test.blk = i;
+                        s_test.plane = 0;
+                        s_test.page = 0;
+
+                        // stop test button press
+                        if (s_test.testSts == (int)e_state.E_STS_STOPPED)
+                        {
+                            return 0;
+                        }
+                        lbn = iIssueFlashCmd((int)e_cmd.E_CMD_ERASE, j, i, 0, 0, pPayload);
+                    }
+                }
+
+                s_test.progress = (int)e_cmd.E_CMD_SEQ_RD;
+                for (int i = 0; i < ((s_dev.dev_size * 1024 * 1024) / 16); i++)
+                {
+
+                    s_test.ch = iGetCh(i);
+                    s_test.blk = iGetBlk(i);
+                    s_test.plane = iGetPlane(i);
+                    s_test.page = iGetPage(i);
+
+                    // stop test button press
+                    if (s_test.testSts == (int)e_state.E_STS_STOPPED)
+                    {
+                        return 0;
+                    }
+                    lbn = iIssueFlashCmdEn((int)e_cmd.E_CMD_READ, i, pPayload);
+                    Marshal.Copy(pPayload, inBuffer, 0, 4);
+                    dataLbn = inBuffer[0];
+
+                    if (lbn != dataLbn)
+                    {
+                        s_test.testSts = (int)e_state.E_STS_STOPPED;
+                        s_test.testRslt = (int)e_test_rslt.E_RSLT_MISCMPARE;
+                        Marshal.FreeHGlobal(pPayload);
+                        return 1;
+                    }
+                }
+
+                loop--;
+            }
+
+            s_test.testRslt = (int)e_test_rslt.E_RSLT_PASS;     // script test result
+            s_test.progress = (int)e_cmd.E_CMD_NONE;    // sript current progress
+            s_test.testSts = (int)e_state.E_STS_STOPPED;   // test finished, wait for join
+
+            Marshal.FreeHGlobal(pPayload);
             return 0;
         }
 
