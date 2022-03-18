@@ -31,6 +31,10 @@ namespace gui
         static extern int iIssueFlashCmdEn(int cmd, int pAddr, IntPtr pPayload);
         [DllImport("sdsp2l_algo.dll")]
         static extern int iInitDeviceConfig(int devCap, int ddrSize, int chCnt, int planeCnt, int pageCnt, IntPtr bufPtr);
+        [DllImport("sdsp2l_algo.dll")]
+        static extern IntPtr iGetEraseCntTable(int ch);
+        [DllImport("sdsp2l_algo.dll")]
+        static extern IntPtr iGetReadCntTable(int ch);
 
         IntPtr bufPtr;
         Thread testThread;
