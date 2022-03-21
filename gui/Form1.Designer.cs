@@ -32,8 +32,9 @@ namespace gui
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage tabErase;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.tabControl = new System.Windows.Forms.TabControl();
+            this.rdCntTab = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rsltGrp = new System.Windows.Forms.GroupBox();
@@ -74,6 +75,8 @@ namespace gui
             this.timeTxBox = new System.Windows.Forms.TextBox();
             this.devCapBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.listView2 = new System.Windows.Forms.ListView();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.timer_1sec = new System.Windows.Forms.Timer(this.components);
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
@@ -81,17 +84,19 @@ namespace gui
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             tabErase = new System.Windows.Forms.TabPage();
             tabErase.SuspendLayout();
-            this.tabControl.SuspendLayout();
+            this.rdCntTab.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.rsltGrp.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabErase
             // 
+            tabErase.Controls.Add(this.button1);
             tabErase.Controls.Add(this.listView1);
             tabErase.Location = new System.Drawing.Point(4, 34);
             tabErase.Name = "tabErase";
@@ -103,29 +108,41 @@ namespace gui
             tabErase.Click += new System.EventHandler(this.tabSMART_Click);
             tabErase.Enter += new System.EventHandler(this.tabSMART_Enter);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(656, 245);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(20, 18);
+            this.listView1.Location = new System.Drawing.Point(9, 6);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(711, 208);
+            this.listView1.Size = new System.Drawing.Size(734, 262);
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // tabControl
+            // rdCntTab
             // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.rdCntTab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.mainTab);
-            this.tabControl.Controls.Add(tabErase);
-            this.tabControl.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabControl.ItemSize = new System.Drawing.Size(80, 30);
-            this.tabControl.Location = new System.Drawing.Point(12, 12);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(757, 312);
-            this.tabControl.TabIndex = 5;
-            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.rdCntTab.Controls.Add(this.mainTab);
+            this.rdCntTab.Controls.Add(tabErase);
+            this.rdCntTab.Controls.Add(this.tabPage1);
+            this.rdCntTab.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rdCntTab.ItemSize = new System.Drawing.Size(80, 30);
+            this.rdCntTab.Location = new System.Drawing.Point(12, 12);
+            this.rdCntTab.Name = "rdCntTab";
+            this.rdCntTab.SelectedIndex = 0;
+            this.rdCntTab.Size = new System.Drawing.Size(757, 312);
+            this.rdCntTab.TabIndex = 5;
+            this.rdCntTab.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // mainTab
             // 
@@ -558,6 +575,26 @@ namespace gui
             this.label1.TabIndex = 33;
             this.label1.Text = "Cap:";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listView2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(749, 274);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "ReadCnt";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // listView2
+            // 
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(7, 6);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(734, 262);
+            this.listView2.TabIndex = 49;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
             // textBoxStatus
             // 
             this.textBoxStatus.AllowDrop = true;
@@ -617,7 +654,7 @@ namespace gui
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 550);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.rdCntTab);
             this.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -627,7 +664,7 @@ namespace gui
             this.Text = "SDS P2L simulator v0.1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             tabErase.ResumeLayout(false);
-            this.tabControl.ResumeLayout(false);
+            this.rdCntTab.ResumeLayout(false);
             this.mainTab.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -637,6 +674,7 @@ namespace gui
             this.testGroup.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -656,7 +694,7 @@ namespace gui
         private System.Windows.Forms.ComboBox testTypeBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabControl rdCntTab;
         private System.Windows.Forms.Button erase_cmd_btn;
         private System.Windows.Forms.Button read_cmd_btn;
         private System.Windows.Forms.Button write_cmd_btn;
@@ -692,6 +730,9 @@ namespace gui
         private System.Windows.Forms.GroupBox rsltGrp;
         private System.Windows.Forms.TextBox rsltText;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ListView listView2;
     }
 }
 

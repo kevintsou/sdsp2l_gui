@@ -8,7 +8,7 @@ namespace gui
     public partial class Form1 : Form
     {
         private int i;
-        int[] inBuffer = new int[512];
+        int[] inBuffer = new int[4 * 3000 * 8];
 
         private static s_dev_config s_dev;
         private static s_sript_mgr s_test;
@@ -31,6 +31,8 @@ namespace gui
             testTypeBox1.SelectedIndex = 0;
 
             testCmdBtn.Text = "Start test";
+
+            vListViewHandle();
 
         }
 
@@ -103,6 +105,8 @@ namespace gui
         }
 
         private void vListViewHandle() {
+            IntPtr ptr = Marshal.AllocHGlobal(s_dev.blkCnt * s_dev.chCnt * 4);
+            
 
             listView1.GridLines = true;
             listView1.FullRowSelect = true;
@@ -112,30 +116,75 @@ namespace gui
             listView1.MultiSelect = false;
             listView1.Clear();
 
-            //listView1.Columns.Add("CH", 40, HorizontalAlignment.Center);
-            //listView1.Columns.Add("IO Burst Cnt", 80, HorizontalAlignment.Center);
-            listView1.Columns.Add("Read Cnt", 80, HorizontalAlignment.Center);
-            listView1.Columns.Add("Write Cnt", 80, HorizontalAlignment.Center);
-            listView1.Columns.Add("Erase Cnt", 80, HorizontalAlignment.Center);
-            //listView1.Columns.Add("Hit Rate", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("CH",70, HorizontalAlignment.Center);
+            listView1.Columns.Add("0", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("1", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("2", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("3", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("4", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("5", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("6", 80, HorizontalAlignment.Center);
+            listView1.Columns.Add("7", 80, HorizontalAlignment.Center);
 
-            //for (int i = 0; i < s_dev.chCnt; i++)
+
+            listView2.GridLines = true;
+            listView2.FullRowSelect = true;
+
+            listView2.View = View.Details;
+            listView2.Scrollable = true;
+            listView2.MultiSelect = false;
+            listView2.Clear();
+
+            listView2.Columns.Add("CH", 70, HorizontalAlignment.Center);
+            listView2.Columns.Add("0", 80, HorizontalAlignment.Center);
+            listView2.Columns.Add("1", 80, HorizontalAlignment.Center);
+            listView2.Columns.Add("2", 80, HorizontalAlignment.Center);
+            listView2.Columns.Add("3", 80, HorizontalAlignment.Center);
+            listView2.Columns.Add("4", 80, HorizontalAlignment.Center);
+            listView2.Columns.Add("5", 80, HorizontalAlignment.Center);
+            listView2.Columns.Add("6", 80, HorizontalAlignment.Center);
+            listView2.Columns.Add("7", 80, HorizontalAlignment.Center);
+
+            for (int ch = 0; ch < s_dev.chCnt; ch++)
             {
-                ListViewItem item = new ListViewItem();
-                item.SubItems.Clear();
-                //item.Text = i.ToString();
-                //item.SubItems.Add(s_test.chBurstCnt[i].ToString());
+                ptr = iGetEraseCntTable(ch);
+                Marshal.Copy(ptr, inBuffer, 0, s_dev.blkCnt * 4);
 
-                //if (i == 0)
-                {
-                    //item.SubItems.Add(i.ToString());
-                    //item.SubItems.Add(i.ToString());
-                    //item.SubItems.Add(i.ToString());
-                    //item.SubItems.Add(s_test.hitRate.ToString());
+                for (int idx = 0; idx < s_dev.blkCnt; idx += 8) {
+                    ListViewItem item = new ListViewItem();
+                    item.SubItems.Clear();
+                    item.Text = "(" + ch.ToString() + ") 0x" + idx.ToString("X");
+                    item.SubItems.Add("0x" + inBuffer[idx + 0].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 1].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 2].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 3].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 4].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 5].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 6].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 7].ToString("X"));
+                    listView1.Items.Add(item);
                 }
 
-                listView1.Items.Add(item);
+                ptr = iGetReadCntTable(ch);
+                Marshal.Copy(ptr, inBuffer, 0, s_dev.blkCnt * 4);
+
+                for (int idx = 0; idx < s_dev.blkCnt; idx += 8)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.SubItems.Clear();
+                    item.Text = "(" + ch.ToString() + ") 0x" + idx.ToString("X");
+                    item.SubItems.Add("0x" + inBuffer[idx + 0].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 1].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 2].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 3].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 4].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 5].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 6].ToString("X"));
+                    item.SubItems.Add("0x" + inBuffer[idx + 7].ToString("X"));
+                    listView2.Items.Add(item);
+                }
             }
+
         }
 
         private void vStopTestHandler() {
@@ -156,7 +205,7 @@ namespace gui
                     }
 
                     rsltText.Text = "Pass, hit rate: " + s_test.hitRate + "%" + Environment.NewLine;
-                    //vListViewHandle();
+                    vListViewHandle();
                     // TBD , read count table, erase count table
                     //tabControl.SelectedTab = tabControl.TabPages[1];       // switch to result page
                     break;
@@ -482,6 +531,9 @@ namespace gui
             }
         }
 
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            vListViewHandle();
+        }
     }
 }
