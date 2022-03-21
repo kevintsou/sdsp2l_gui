@@ -155,9 +155,10 @@ namespace gui
                         s_test.chBurstCnt[i] = iGetIoBurstCnt(i);
                     }
 
-                    vListViewHandle();
+                    rsltText.Text = "Pass, hit rate: " + s_test.hitRate + "%" + Environment.NewLine;
+                    //vListViewHandle();
                     // TBD , read count table, erase count table
-                    tabControl.SelectedTab = tabControl.TabPages[1];       // switch to result page
+                    //tabControl.SelectedTab = tabControl.TabPages[1];       // switch to result page
                     break;
                 case (int)e_test_rslt.E_RSLT_MISCMPARE:
                     str = new string("DATA MISCOMPARE");

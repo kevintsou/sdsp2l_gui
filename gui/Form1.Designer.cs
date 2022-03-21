@@ -30,10 +30,15 @@ namespace gui
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TabPage tabErase;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.listView1 = new System.Windows.Forms.ListView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rsltGrp = new System.Windows.Forms.GroupBox();
+            this.rsltText = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tblSizeBtn = new System.Windows.Forms.Button();
             this.initDevBtn = new System.Windows.Forms.Button();
             this.pageTxBox = new System.Windows.Forms.TextBox();
@@ -69,28 +74,50 @@ namespace gui
             this.timeTxBox = new System.Windows.Forms.TextBox();
             this.devCapBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabSMART = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.timer_1sec = new System.Windows.Forms.Timer(this.components);
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
             this.btnClearOutput = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            tabErase = new System.Windows.Forms.TabPage();
+            tabErase.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.rsltGrp.SuspendLayout();
             this.testGroup.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabSMART.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabErase
+            // 
+            tabErase.Controls.Add(this.listView1);
+            tabErase.Location = new System.Drawing.Point(4, 34);
+            tabErase.Name = "tabErase";
+            tabErase.Padding = new System.Windows.Forms.Padding(3);
+            tabErase.Size = new System.Drawing.Size(749, 274);
+            tabErase.TabIndex = 2;
+            tabErase.Text = "EraseCnt";
+            tabErase.UseVisualStyleBackColor = true;
+            tabErase.Click += new System.EventHandler(this.tabSMART_Click);
+            tabErase.Enter += new System.EventHandler(this.tabSMART_Enter);
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(20, 18);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(711, 208);
+            this.listView1.TabIndex = 47;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // tabControl
             // 
             this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.mainTab);
-            this.tabControl.Controls.Add(this.tabSMART);
+            this.tabControl.Controls.Add(tabErase);
             this.tabControl.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabControl.ItemSize = new System.Drawing.Size(80, 30);
             this.tabControl.Location = new System.Drawing.Point(12, 12);
@@ -114,6 +141,7 @@ namespace gui
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rsltGrp);
             this.groupBox1.Controls.Add(this.tblSizeBtn);
             this.groupBox1.Controls.Add(this.initDevBtn);
             this.groupBox1.Controls.Add(this.pageTxBox);
@@ -135,6 +163,35 @@ namespace gui
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
+            // 
+            // rsltGrp
+            // 
+            this.rsltGrp.Controls.Add(this.rsltText);
+            this.rsltGrp.Controls.Add(this.textBox2);
+            this.rsltGrp.Location = new System.Drawing.Point(21, 179);
+            this.rsltGrp.Name = "rsltGrp";
+            this.rsltGrp.Size = new System.Drawing.Size(182, 46);
+            this.rsltGrp.TabIndex = 39;
+            this.rsltGrp.TabStop = false;
+            this.rsltGrp.Text = "Result";
+            // 
+            // rsltText
+            // 
+            this.rsltText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rsltText.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rsltText.Location = new System.Drawing.Point(32, 19);
+            this.rsltText.Name = "rsltText";
+            this.rsltText.Size = new System.Drawing.Size(111, 16);
+            this.rsltText.TabIndex = 1;
+            // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox2.Location = new System.Drawing.Point(10, 19);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(88, 16);
+            this.textBox2.TabIndex = 0;
             // 
             // tblSizeBtn
             // 
@@ -501,28 +558,6 @@ namespace gui
             this.label1.TabIndex = 33;
             this.label1.Text = "Cap:";
             // 
-            // tabSMART
-            // 
-            this.tabSMART.Controls.Add(this.listView1);
-            this.tabSMART.Location = new System.Drawing.Point(4, 34);
-            this.tabSMART.Name = "tabSMART";
-            this.tabSMART.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSMART.Size = new System.Drawing.Size(749, 274);
-            this.tabSMART.TabIndex = 2;
-            this.tabSMART.Text = "Result";
-            this.tabSMART.UseVisualStyleBackColor = true;
-            this.tabSMART.Click += new System.EventHandler(this.tabSMART_Click);
-            this.tabSMART.Enter += new System.EventHandler(this.tabSMART_Enter);
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(20, 18);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(711, 208);
-            this.listView1.TabIndex = 47;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // textBoxStatus
             // 
             this.textBoxStatus.AllowDrop = true;
@@ -591,15 +626,17 @@ namespace gui
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SDS P2L simulator v0.1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
+            tabErase.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.mainTab.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.rsltGrp.ResumeLayout(false);
+            this.rsltGrp.PerformLayout();
             this.testGroup.ResumeLayout(false);
             this.testGroup.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabSMART.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -611,7 +648,7 @@ namespace gui
         private System.Windows.Forms.Timer timer_1sec;
         private System.Windows.Forms.Timer timer_300MS;
         private System.Windows.Forms.Button btnClearOutput;
-        private System.Windows.Forms.TabPage tabSMART;
+        private System.Windows.Forms.TabPage tabErase;
         private System.Windows.Forms.TabPage mainTab;
         private System.Windows.Forms.Button ddr_size_btn;
         private System.Windows.Forms.Button dev_cap_btn;
@@ -652,6 +689,9 @@ namespace gui
         private System.Windows.Forms.Button tblSizeBtn;
         private System.Windows.Forms.TextBox testStsBx;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.GroupBox rsltGrp;
+        private System.Windows.Forms.TextBox rsltText;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
