@@ -17,6 +17,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AdditionalFiles Remove="app.manifest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Form1.Feature.cs" />
   </ItemGroup>
 
