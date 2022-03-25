@@ -379,7 +379,7 @@ namespace gui
                     Marshal.Copy(pPayload, inBuffer, 0, 4);
                     dataLbn = inBuffer[0];
 
-                    if (i != dataLbn)
+                    if (i == dataLbn)
                     {
                         s_test.testSts = (int)e_state.E_STS_STOPPED;
                         s_test.testRslt = (int)e_test_rslt.E_RSLT_MISCMPARE;
