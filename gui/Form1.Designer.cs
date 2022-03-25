@@ -661,7 +661,7 @@ namespace gui
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SDS P2L simulator v0.1.0";
+            this.Text = "SP2LT simulator v0.1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             tabErase.ResumeLayout(false);
             this.rdCntTab.ResumeLayout(false);

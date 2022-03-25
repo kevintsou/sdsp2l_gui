@@ -311,7 +311,7 @@ namespace gui
             dataLbn = inBuffer[0];
 
             textBoxStatus.AppendText("    Issue read cmd: ch: " + ch + ", blk: " + blk + ", plane: " + plane + ", page: " + page + Environment.NewLine);
-            textBoxStatus.AppendText("    Read cmd done, lbn: 0x" + lbn.ToString("X4") + " , data lbn: 0x" + dataLbn.ToString("X4") + Environment.NewLine);
+            textBoxStatus.AppendText("    Read cmd done, lbn: 0x" + lbn.ToString("X4") + " , pAddr: 0x" + dataLbn.ToString("X4") + Environment.NewLine);
 
             Marshal.FreeHGlobal(pPayload);
         }
