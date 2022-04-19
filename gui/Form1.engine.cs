@@ -128,7 +128,6 @@ namespace gui
         public int iRaidDecodeEng(IntPtr pPayload, int iFinal)
         {
             int idx = 0;
-            int intRawLeng = 512;
             int intFullLeng = (2048+256)/4;
 
             Array.Clear(inBuffer, 0, inBuffer.Length);
@@ -140,15 +139,14 @@ namespace gui
                 {
                     for (idx = 0; idx < 512; idx++)
                     {
-                        iRaidDecParity[idx + i*512 + framIdx*intRawLeng] = 
-                            iRaidDecParity[idx + i*512 + framIdx*intRawLeng] ^ inBuffer[idx + (i*intFullLeng) + framIdx*((4096+512)/4)];
+                        iRaidDecParity[idx + i*512 + framIdx*((4096+512)/4)] = 
+                            iRaidDecParity[idx + i*512 + framIdx*((4096+512)/4)] ^ inBuffer[idx + (i*intFullLeng) + framIdx*((4096+512)/4)];
                     }
                 }
             }
 
             if (iFinal == 1) {
                 iRaidDecRslt = iRaidDecParity;
-
             }
 
             return 0;

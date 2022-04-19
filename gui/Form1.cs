@@ -609,16 +609,18 @@ namespace gui
             textBoxStatus.AppendText("    Ecc Encode !!" + Environment.NewLine);
             iEccEncodeEng(pPayload, p4k, 8);
 
+            Marshal.Copy(iRaidDecRslt, 0, pPayload, (16384+2048)/4);
+            iRaidDecodeEng(pPayload, 1);
+
             textBoxStatus.AppendText("    Ecc Decode !!" + Environment.NewLine);
             if (iEccDetectEng(pPayload, 8) != 0)
             {
                 textBoxStatus.AppendText("    Ecc Detect Failure !!" + Environment.NewLine);
             }
-            else {
+            else
+            {
                 textBoxStatus.AppendText("    Ecc Detect Pass !!" + Environment.NewLine);
             }
-
-            iRaidDecodeEng(pPayload, 1);
 
             Marshal.FreeHGlobal(pPayload);
         }
