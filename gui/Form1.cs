@@ -302,12 +302,25 @@ namespace gui
                 return;
             }
 
-            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            //IntPtr pPayload = Marshal.AllocHGlobal(4);
+            IntPtr pPayload = Marshal.AllocHGlobal(16384+2048);
+
             // issue flash cmd to backend
             int lbn = iIssueFlashCmd((int)e_cmd.E_CMD_READ, ch, blk, plane, page, pPayload);
             //int lbn = iFlashCmdHandler((int)e_cmd.E_CMD_READ, ch, blk, plane, page, pPayload);
+
+            textBoxStatus.AppendText("    Ecc Decode !!" + Environment.NewLine);
+            if (iEccDetectEng(pPayload, 8) != 0)
+            {
+                textBoxStatus.AppendText("    Ecc Detect Failure !!" + Environment.NewLine);
+            }
+            else
+            {
+                textBoxStatus.AppendText("    Ecc Detect Pass !!" + Environment.NewLine);
+            }
+
             int dataLbn  = 0;
-            Marshal.Copy(pPayload, inBuffer, 0, 4);
+            Marshal.Copy(pPayload, inBuffer, 0, (16384+2048)/4);
             dataLbn = inBuffer[0];
 
             textBoxStatus.AppendText("    Issue read cmd: ch: " + ch + ", blk: " + blk + ", plane: " + plane + ", page: " + page + Environment.NewLine);
@@ -329,7 +342,34 @@ namespace gui
                 return;
             }
 
-            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            //IntPtr pPayload = Marshal.AllocHGlobal(4);
+            IntPtr pPayload = Marshal.AllocHGlobal(16384+2048);
+            int[][] p4k = new int[4][];
+
+            // insert fake p4k informaiton
+            for (int idx = 0; idx < 4; idx++)
+            {
+                p4k[idx] = new int[4];
+                p4k[idx][0] = ch;
+                p4k[idx][1] = page;
+                p4k[idx][2] = plane;
+                p4k[idx][3] = blk;
+            }
+
+            for (int idx = 0; idx < 8; idx++)
+            {
+                inBuffer[512*idx] = ch;
+                inBuffer[512*idx+1] = plane;
+                inBuffer[512*idx+2] = blk;
+                inBuffer[512*idx+3] = plane;
+            }
+
+            Marshal.Copy(inBuffer, 0, pPayload, (16384+2048)/4);
+
+            textBoxStatus.AppendText("    Ecc Encode !!" + Environment.NewLine);
+            iEccEncodeEng(pPayload, p4k, 8);
+
+
             // issue flash cmd to backend
             int lbn = iIssueFlashCmd((int)e_cmd.E_CMD_WRITE, ch, blk, plane, page, pPayload);
             //int lbn = iFlashCmdHandler((int)e_cmd.E_CMD_WRITE, ch, blk, plane, page, pPayload);
@@ -572,6 +612,7 @@ namespace gui
                 textBoxStatus.AppendText("    Ecc Detect Pass !!" + Environment.NewLine);
             }
 
+            Marshal.FreeHGlobal(pPayload);
         }
     }
 }
