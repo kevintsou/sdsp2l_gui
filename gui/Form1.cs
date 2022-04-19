@@ -33,7 +33,7 @@ namespace gui
             testCmdBtn.Text = "Start test";
 
             vListViewHandle();
-
+            iInitEngVal();  // init engine relative variables
         }
 
         private void textBoxStatus_TextChanged(object sender, EventArgs e)
