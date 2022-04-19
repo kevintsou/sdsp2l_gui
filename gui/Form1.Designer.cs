@@ -210,7 +210,7 @@ namespace gui
             // 
             // engine_tst_btn
             // 
-            this.engine_tst_btn.Location = new System.Drawing.Point(244, 194);
+            this.engine_tst_btn.Location = new System.Drawing.Point(244, 133);
             this.engine_tst_btn.Name = "engine_tst_btn";
             this.engine_tst_btn.Size = new System.Drawing.Size(95, 23);
             this.engine_tst_btn.TabIndex = 45;
@@ -259,7 +259,7 @@ namespace gui
             // 
             // initDevBtn
             // 
-            this.initDevBtn.Location = new System.Drawing.Point(190, 133);
+            this.initDevBtn.Location = new System.Drawing.Point(143, 133);
             this.initDevBtn.Name = "initDevBtn";
             this.initDevBtn.Size = new System.Drawing.Size(95, 23);
             this.initDevBtn.TabIndex = 43;
