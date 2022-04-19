@@ -8,35 +8,73 @@ namespace gui
 {
     partial class Form1
     {
-        int[] payloadBuffer = new int[18 * 256];    // 18K payload buffer
-
         // encode data to generate the ecc parity
-        // 4KB DATA + 16Bytes P4K + 4Bytes parity
-        public int iEccEncode(IntPtr pPayload) {
+        // 2KB DATA + 8Bytes P4K + 4Bytes parity
+        // IntPtr pPayload : data payload
+        // int iEccFraNum : encode ecc frame number
+        public int iEccEncodeEng(IntPtr pPayload, int[][] p4k, int iEccFraNum) {
             int parity = 0;
             int idx = 0;
-            
-            for (int eccIdx = 0; eccIdx < 4; eccIdx++)
+            IntPtr tmpPtr = pPayload;
+            int intFullLeng = (2048+256)/4;
+            int intRawLeng = 512;
+
+            Array.Clear(inBuffer, 0, inBuffer.Length);
+
+            // for each ecc frame
+            for (int eccIdx = 0; eccIdx < iEccFraNum; eccIdx++)
             {
-                Marshal.Copy(pPayload, inBuffer, eccIdx*(4096+512), (4096+512));
-                // encode 4K
-                for (idx = 0; idx < (1024 + 4); idx++)
+                tmpPtr = IntPtr.Add(pPayload, eccIdx*2048);
+                Marshal.Copy(tmpPtr, inBuffer, eccIdx*intFullLeng, intRawLeng);
+
+                // copy p4k content to inBuffer
+                inBuffer[eccIdx*intFullLeng + 512] = p4k[eccIdx/2][(eccIdx%2)*2];
+                inBuffer[eccIdx*intFullLeng + 513] = p4k[eccIdx/2][(eccIdx%2)*2+1];
+
+                // encode 2K
+                for (idx = 0; idx < (512 + 2); idx++)
                 {
-                    parity = parity ^ inBuffer[idx + eccIdx*(4096+512)];
+                    parity = parity ^ inBuffer[idx + eccIdx*intFullLeng];
                 }
-                inBuffer[idx] = parity; // parity field
+                inBuffer[idx + eccIdx*intFullLeng] = parity; // parity field
+                parity = 0;
             }
 
+            Marshal.Copy(inBuffer, 0, pPayload, (16384+2048)/4);
             return 0;
         }
 
         // detect if the page occur ecc error
-        public int iEccDetect(int[] pPayload) { 
-            return -1;
+        // 2KB DATA + 8Bytes P4K + 4Bytes parity
+        // IntPtr pPayload : data payload
+        // int iEccFraNum : decode ecc frame number
+        public int iEccDetectEng(IntPtr pPayload, int iEccFraNum) {
+            int parity = 0;
+            int idx = 0;
+            int intFullLeng = (2048+256)/4;
+
+            Array.Clear(inBuffer, 0, inBuffer.Length);
+            Marshal.Copy(pPayload, inBuffer, 0, (16384+2048)/4);
+            // for each ecc frame
+            for (int eccIdx = 0; eccIdx < iEccFraNum; eccIdx++)
+            {
+                // encode 2K
+                for (idx = 0; idx < (512 + 2); idx++)
+                {
+                    parity = parity ^ inBuffer[idx + eccIdx*intFullLeng];
+                }
+
+                if(inBuffer[idx + eccIdx*intFullLeng] != parity)
+                {
+                    return -1;
+                }
+                parity = 0;
+            }
+            return 0;
         }
 
         // raid encode main function
-        public int iRaidEncode() { 
+        public int iRaidEncodeEng() { 
             return 0;
         }
 
@@ -47,8 +85,8 @@ namespace gui
         }
 
         // use this funciton to decode the error page
-        public int iRaidDecode() { 
-            return -1;
+        public int iRaidDecodeEng() { 
+            return 0;
         }
     }
 }

@@ -540,5 +540,38 @@ namespace gui
         {
 
         }
+
+        private void engine_tst_btn_Click(object sender, EventArgs e)
+        {
+            IntPtr pPayload = Marshal.AllocHGlobal(16384+2048);
+            int[][] p4k = new int[4][];
+
+            // insert fake p4k informaiton
+            for (int idx = 0; idx < 4; idx++) { 
+                p4k[idx] = new int[4];
+                p4k[idx][0] = ((idx+1)<<16)+(idx+1);
+                p4k[idx][3] = 0xFFFF;
+                p4k[idx][2] = 0xAAAA;
+            }
+
+            for (int idx = 0; idx < 8; idx++) {
+                inBuffer[512*idx] = idx+1;
+            }
+
+            Marshal.Copy(inBuffer, 0, pPayload, (16384+2048)/4);
+
+            textBoxStatus.AppendText("    Ecc Encode !!" + Environment.NewLine);
+            iEccEncodeEng(pPayload, p4k, 8);
+
+            textBoxStatus.AppendText("    Ecc Decode !!" + Environment.NewLine);
+            if (iEccDetectEng(pPayload, 8) != 0)
+            {
+                textBoxStatus.AppendText("    Ecc Detect Failure !!" + Environment.NewLine);
+            }
+            else {
+                textBoxStatus.AppendText("    Ecc Detect Pass !!" + Environment.NewLine);
+            }
+
+        }
     }
 }

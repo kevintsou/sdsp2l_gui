@@ -37,6 +37,7 @@ namespace gui
             this.rdCntTab = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.engine_tst_btn = new System.Windows.Forms.Button();
             this.rsltGrp = new System.Windows.Forms.GroupBox();
             this.rsltText = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -77,11 +78,6 @@ namespace gui
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
-            this.timer_1sec = new System.Windows.Forms.Timer(this.components);
-            this.timer_300MS = new System.Windows.Forms.Timer(this.components);
-            this.btnClearOutput = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.NxS = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -103,6 +99,11 @@ namespace gui
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
+            this.timer_1sec = new System.Windows.Forms.Timer(this.components);
+            this.timer_300MS = new System.Windows.Forms.Timer(this.components);
+            this.btnClearOutput = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             tabErase = new System.Windows.Forms.TabPage();
             tabErase.SuspendLayout();
             this.rdCntTab.SuspendLayout();
@@ -112,10 +113,10 @@ namespace gui
             this.testGroup.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.NxS.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabErase
@@ -183,6 +184,7 @@ namespace gui
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.engine_tst_btn);
             this.groupBox1.Controls.Add(this.rsltGrp);
             this.groupBox1.Controls.Add(this.tblSizeBtn);
             this.groupBox1.Controls.Add(this.initDevBtn);
@@ -205,6 +207,16 @@ namespace gui
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
+            // 
+            // engine_tst_btn
+            // 
+            this.engine_tst_btn.Location = new System.Drawing.Point(244, 194);
+            this.engine_tst_btn.Name = "engine_tst_btn";
+            this.engine_tst_btn.Size = new System.Drawing.Size(95, 23);
+            this.engine_tst_btn.TabIndex = 45;
+            this.engine_tst_btn.Text = "Engine Test";
+            this.engine_tst_btn.UseVisualStyleBackColor = true;
+            this.engine_tst_btn.Click += new System.EventHandler(this.engine_tst_btn_Click);
             // 
             // rsltGrp
             // 
@@ -620,58 +632,6 @@ namespace gui
             this.listView2.TabIndex = 49;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
-            // textBoxStatus
-            // 
-            this.textBoxStatus.AllowDrop = true;
-            this.textBoxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxStatus.Location = new System.Drawing.Point(9, 16);
-            this.textBoxStatus.Margin = new System.Windows.Forms.Padding(6);
-            this.textBoxStatus.Multiline = true;
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxStatus.Size = new System.Drawing.Size(739, 185);
-            this.textBoxStatus.TabIndex = 2;
-            this.textBoxStatus.TextChanged += new System.EventHandler(this.textBoxStatus_TextChanged);
-            // 
-            // timer_1sec
-            // 
-            this.timer_1sec.Enabled = true;
-            this.timer_1sec.Interval = 1000;
-            this.timer_1sec.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer_300MS
-            // 
-            this.timer_300MS.Enabled = true;
-            this.timer_300MS.Interval = 30;
-            this.timer_300MS.Tick += new System.EventHandler(this.timer_300mis_Tick);
-            // 
-            // btnClearOutput
-            // 
-            this.btnClearOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearOutput.BackColor = System.Drawing.SystemColors.Window;
-            this.btnClearOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearOutput.Location = new System.Drawing.Point(631, 151);
-            this.btnClearOutput.Name = "btnClearOutput";
-            this.btnClearOutput.Size = new System.Drawing.Size(84, 38);
-            this.btnClearOutput.TabIndex = 6;
-            this.btnClearOutput.Text = "Clear ";
-            this.btnClearOutput.UseVisualStyleBackColor = false;
-            this.btnClearOutput.Click += new System.EventHandler(this.btnClearOutput_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnClearOutput);
-            this.groupBox2.Controls.Add(this.textBoxStatus);
-            this.groupBox2.Location = new System.Drawing.Point(16, 330);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(757, 208);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Message";
-            // 
             // NxS
             // 
             this.NxS.Controls.Add(this.groupBox4);
@@ -894,6 +854,58 @@ namespace gui
             this.label14.TabIndex = 33;
             this.label14.Text = "Cap:";
             // 
+            // textBoxStatus
+            // 
+            this.textBoxStatus.AllowDrop = true;
+            this.textBoxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxStatus.Location = new System.Drawing.Point(9, 16);
+            this.textBoxStatus.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxStatus.Multiline = true;
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxStatus.Size = new System.Drawing.Size(739, 185);
+            this.textBoxStatus.TabIndex = 2;
+            this.textBoxStatus.TextChanged += new System.EventHandler(this.textBoxStatus_TextChanged);
+            // 
+            // timer_1sec
+            // 
+            this.timer_1sec.Enabled = true;
+            this.timer_1sec.Interval = 1000;
+            this.timer_1sec.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer_300MS
+            // 
+            this.timer_300MS.Enabled = true;
+            this.timer_300MS.Interval = 30;
+            this.timer_300MS.Tick += new System.EventHandler(this.timer_300mis_Tick);
+            // 
+            // btnClearOutput
+            // 
+            this.btnClearOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearOutput.BackColor = System.Drawing.SystemColors.Window;
+            this.btnClearOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearOutput.Location = new System.Drawing.Point(631, 151);
+            this.btnClearOutput.Name = "btnClearOutput";
+            this.btnClearOutput.Size = new System.Drawing.Size(84, 38);
+            this.btnClearOutput.TabIndex = 6;
+            this.btnClearOutput.Text = "Clear ";
+            this.btnClearOutput.UseVisualStyleBackColor = false;
+            this.btnClearOutput.Click += new System.EventHandler(this.btnClearOutput_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnClearOutput);
+            this.groupBox2.Controls.Add(this.textBoxStatus);
+            this.groupBox2.Location = new System.Drawing.Point(16, 330);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(757, 208);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Message";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -922,13 +934,13 @@ namespace gui
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.NxS.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1006,6 +1018,7 @@ namespace gui
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button engine_tst_btn;
     }
 }
 
