@@ -100,7 +100,10 @@ namespace gui
 
 
         public int iPrefillData() {
-            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            IntPtr pPayload = Marshal.AllocHGlobal(18432);
+            for (int idx = 0; idx < 18432/4; idx++) {
+                Marshal.WriteInt32(pPayload, idx * sizeof(int), ((Int32)(0)));  // initial pPayload
+            }
             s_test.progress = (int)e_cmd.E_CMD_WRITE;
 
             // prefill data
@@ -116,7 +119,8 @@ namespace gui
                 s_test.blk = iGetBlk(i);
                 s_test.plane = iGetPlane(i);
                 s_test.page = iGetPage(i);
-
+                int Data_in = (s_test.ch << s_dev.chSftCnt) | (s_test.blk << s_dev.blkSftCnt) | (s_test.plane << s_dev.planeSftCnt) | (s_test.page << s_dev.pageSftCnt);
+                Marshal.WriteInt32(pPayload, Data_in);  // Set (pPayload + idx * 18432)'s data as Address
                 iIssueFlashCmdEn((int)e_cmd.E_CMD_WRITE, i, pPayload);
             }
 
@@ -128,7 +132,7 @@ namespace gui
         // 0. Sequencial Rd (prefill)
         public int iScript_0() {
 
-            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            IntPtr pPayload = Marshal.AllocHGlobal(18432);
             int lbn = 0, dataLbn = 0, loop = 5000;
 
             iPrefillData();
@@ -176,7 +180,7 @@ namespace gui
         // 1. Random Rd (prefill)
         public int iScript_1()
         {
-            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            IntPtr pPayload = Marshal.AllocHGlobal(18432);
             int lbn = 0, dataLbn = 0, loop = 5000;
             int idx = 0;
 
@@ -227,7 +231,7 @@ namespace gui
         // 2. Seq/Random Rd mixed(prefill)
         public int iScript_2()
         {
-            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            IntPtr pPayload = Marshal.AllocHGlobal(18432);
             int lbn = 0, dataLbn = 0, loop = 5000;
             int idx = 0;
 
@@ -308,7 +312,7 @@ namespace gui
         // 3. Rd/Wr/Erase mixed
         public int iScript_3()
         {
-            IntPtr pPayload = Marshal.AllocHGlobal(4);
+            IntPtr pPayload = Marshal.AllocHGlobal(18432);
             int lbn = 0, dataLbn = 0, loop = 5000;
 
             while (loop != 0)

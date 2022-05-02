@@ -68,6 +68,14 @@ namespace gui
         public int[] readCnt;  // read count of each die block (target)
     }
 
+    public struct nxs_dev_config
+    {
+        public int chCnt;
+        public int planeCnt;
+        public int blockCnt;
+        public int pageCnt;
+    }
+
     public enum e_cmd
     {
         E_CMD_READ = 0,
@@ -91,5 +99,15 @@ namespace gui
         E_STS_RUNNING = 1,  // test on going
         E_STS_PAUSED = 2,   // test pause
         E_STS_STOPPED = 3   // thread stop , wait for join
+    }
+
+    public enum n_state
+    {
+        N_STS_IDLE = 0,
+        N_STS_RUNNING = 1,
+        N_STS_PAUSED = 2,
+        N_STS_STOPPED = 3,
+        N_STS_VBFULL = 4,
+        N_STS_END = 5
     }
 }

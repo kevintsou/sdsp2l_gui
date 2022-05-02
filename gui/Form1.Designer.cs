@@ -30,8 +30,7 @@ namespace gui
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TabPage tabErase;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.tabErase = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.rdCntTab = new System.Windows.Forms.TabControl();
@@ -78,34 +77,25 @@ namespace gui
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView2 = new System.Windows.Forms.ListView();
-            this.NxS = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.NxStabPage = new System.Windows.Forms.TabPage();
+            this.NxSgroupBox = new System.Windows.Forms.GroupBox();
+            this.nxsBlockNum = new System.Windows.Forms.TextBox();
+            this.Blocklabel = new System.Windows.Forms.Label();
+            this.nxsPageNum = new System.Windows.Forms.TextBox();
+            this.Scriptlabel = new System.Windows.Forms.Label();
+            this.nxsPlaneNum = new System.Windows.Forms.TextBox();
+            this.nxscriptSelectionBox = new System.Windows.Forms.ComboBox();
+            this.nxsChNum = new System.Windows.Forms.TextBox();
+            this.Pagelabel = new System.Windows.Forms.Label();
+            this.nxsTestBtn = new System.Windows.Forms.Button();
+            this.Planelabel = new System.Windows.Forms.Label();
+            this.Chlabel = new System.Windows.Forms.Label();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.timer_1sec = new System.Windows.Forms.Timer(this.components);
             this.timer_300MS = new System.Windows.Forms.Timer(this.components);
             this.btnClearOutput = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            tabErase = new System.Windows.Forms.TabPage();
-            tabErase.SuspendLayout();
+            this.tabErase.SuspendLayout();
             this.rdCntTab.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -113,25 +103,24 @@ namespace gui
             this.testGroup.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.NxS.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.NxStabPage.SuspendLayout();
+            this.NxSgroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabErase
             // 
-            tabErase.Controls.Add(this.button1);
-            tabErase.Controls.Add(this.listView1);
-            tabErase.Location = new System.Drawing.Point(4, 34);
-            tabErase.Name = "tabErase";
-            tabErase.Padding = new System.Windows.Forms.Padding(3);
-            tabErase.Size = new System.Drawing.Size(749, 274);
-            tabErase.TabIndex = 2;
-            tabErase.Text = "EraseCnt";
-            tabErase.UseVisualStyleBackColor = true;
-            tabErase.Click += new System.EventHandler(this.tabSMART_Click);
-            tabErase.Enter += new System.EventHandler(this.tabSMART_Enter);
+            this.tabErase.Controls.Add(this.button1);
+            this.tabErase.Controls.Add(this.listView1);
+            this.tabErase.Location = new System.Drawing.Point(4, 34);
+            this.tabErase.Name = "tabErase";
+            this.tabErase.Padding = new System.Windows.Forms.Padding(3);
+            this.tabErase.Size = new System.Drawing.Size(749, 274);
+            this.tabErase.TabIndex = 2;
+            this.tabErase.Text = "EraseCnt";
+            this.tabErase.UseVisualStyleBackColor = true;
+            this.tabErase.Click += new System.EventHandler(this.tabSMART_Click);
+            this.tabErase.Enter += new System.EventHandler(this.tabSMART_Enter);
             // 
             // button1
             // 
@@ -158,9 +147,9 @@ namespace gui
             this.rdCntTab.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rdCntTab.Controls.Add(this.mainTab);
-            this.rdCntTab.Controls.Add(tabErase);
+            this.rdCntTab.Controls.Add(this.tabErase);
             this.rdCntTab.Controls.Add(this.tabPage1);
-            this.rdCntTab.Controls.Add(this.NxS);
+            this.rdCntTab.Controls.Add(this.NxStabPage);
             this.rdCntTab.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.rdCntTab.ItemSize = new System.Drawing.Size(80, 30);
             this.rdCntTab.Location = new System.Drawing.Point(12, 12);
@@ -632,227 +621,134 @@ namespace gui
             this.listView2.TabIndex = 49;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
-            // NxS
+            // NxStabPage
             // 
-            this.NxS.Controls.Add(this.groupBox4);
-            this.NxS.Location = new System.Drawing.Point(4, 34);
-            this.NxS.Name = "NxS";
-            this.NxS.Padding = new System.Windows.Forms.Padding(3);
-            this.NxS.Size = new System.Drawing.Size(749, 274);
-            this.NxS.TabIndex = 4;
-            this.NxS.Text = "NxS";
-            this.NxS.UseVisualStyleBackColor = true;
+            this.NxStabPage.Controls.Add(this.NxSgroupBox);
+            this.NxStabPage.Location = new System.Drawing.Point(4, 34);
+            this.NxStabPage.Name = "NxStabPage";
+            this.NxStabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.NxStabPage.Size = new System.Drawing.Size(749, 274);
+            this.NxStabPage.TabIndex = 4;
+            this.NxStabPage.Text = "NxS";
+            this.NxStabPage.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // NxSgroupBox
             // 
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.groupBox5);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.textBox5);
-            this.groupBox4.Controls.Add(this.comboBox1);
-            this.groupBox4.Controls.Add(this.checkBox1);
-            this.groupBox4.Controls.Add(this.textBox6);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.comboBox2);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.textBox7);
-            this.groupBox4.Controls.Add(this.comboBox3);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Location = new System.Drawing.Point(20, 17);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(341, 242);
-            this.groupBox4.TabIndex = 38;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Script test";
+            this.NxSgroupBox.Controls.Add(this.nxsBlockNum);
+            this.NxSgroupBox.Controls.Add(this.Blocklabel);
+            this.NxSgroupBox.Controls.Add(this.nxsPageNum);
+            this.NxSgroupBox.Controls.Add(this.Scriptlabel);
+            this.NxSgroupBox.Controls.Add(this.nxsPlaneNum);
+            this.NxSgroupBox.Controls.Add(this.nxscriptSelectionBox);
+            this.NxSgroupBox.Controls.Add(this.nxsChNum);
+            this.NxSgroupBox.Controls.Add(this.Pagelabel);
+            this.NxSgroupBox.Controls.Add(this.nxsTestBtn);
+            this.NxSgroupBox.Controls.Add(this.Planelabel);
+            this.NxSgroupBox.Controls.Add(this.Chlabel);
+            this.NxSgroupBox.Location = new System.Drawing.Point(15, 15);
+            this.NxSgroupBox.Name = "NxSgroupBox";
+            this.NxSgroupBox.Size = new System.Drawing.Size(341, 242);
+            this.NxSgroupBox.TabIndex = 38;
+            this.NxSgroupBox.TabStop = false;
+            this.NxSgroupBox.Text = "Script test";
             // 
-            // textBox1
+            // nxsBlockNum
             // 
-            this.textBox1.Location = new System.Drawing.Point(234, 119);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(77, 23);
-            this.textBox1.TabIndex = 51;
-            this.textBox1.Text = "1024";
+            this.nxsBlockNum.Location = new System.Drawing.Point(233, 76);
+            this.nxsBlockNum.Name = "nxsBlockNum";
+            this.nxsBlockNum.Size = new System.Drawing.Size(77, 23);
+            this.nxsBlockNum.TabIndex = 53;
+            this.nxsBlockNum.Text = "1024";
             // 
-            // groupBox5
+            // Blocklabel
             // 
-            this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Controls.Add(this.textBox4);
-            this.groupBox5.Location = new System.Drawing.Point(135, 179);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(182, 46);
-            this.groupBox5.TabIndex = 38;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Time elapsed";
+            this.Blocklabel.AutoSize = true;
+            this.Blocklabel.Location = new System.Drawing.Point(182, 79);
+            this.Blocklabel.Name = "Blocklabel";
+            this.Blocklabel.Size = new System.Drawing.Size(48, 15);
+            this.Blocklabel.TabIndex = 52;
+            this.Blocklabel.Text = "Block#:";
             // 
-            // textBox3
+            // nxsPageNum
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(65, 19);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(111, 16);
-            this.textBox3.TabIndex = 1;
+            this.nxsPageNum.Location = new System.Drawing.Point(233, 105);
+            this.nxsPageNum.Name = "nxsPageNum";
+            this.nxsPageNum.Size = new System.Drawing.Size(77, 23);
+            this.nxsPageNum.TabIndex = 51;
+            this.nxsPageNum.Text = "512";
             // 
-            // textBox4
+            // Scriptlabel
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox4.Location = new System.Drawing.Point(10, 19);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(88, 16);
-            this.textBox4.TabIndex = 0;
+            this.Scriptlabel.AutoSize = true;
+            this.Scriptlabel.Location = new System.Drawing.Point(26, 34);
+            this.Scriptlabel.Name = "Scriptlabel";
+            this.Scriptlabel.Size = new System.Drawing.Size(42, 15);
+            this.Scriptlabel.TabIndex = 6;
+            this.Scriptlabel.Text = "Script:";
             // 
-            // label2
+            // nxsPlaneNum
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 15);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Script:";
+            this.nxsPlaneNum.Location = new System.Drawing.Point(74, 105);
+            this.nxsPlaneNum.Name = "nxsPlaneNum";
+            this.nxsPlaneNum.Size = new System.Drawing.Size(77, 23);
+            this.nxsPlaneNum.TabIndex = 50;
+            this.nxsPlaneNum.Text = "4";
             // 
-            // textBox5
+            // nxscriptSelectionBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(234, 89);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(77, 23);
-            this.textBox5.TabIndex = 50;
-            this.textBox5.Text = "4";
+            this.nxscriptSelectionBox.FormattingEnabled = true;
+            this.nxscriptSelectionBox.Items.AddRange(new object[] {
+            "0. NRC_Case 1"});
+            this.nxscriptSelectionBox.Location = new System.Drawing.Point(74, 31);
+            this.nxscriptSelectionBox.Name = "nxscriptSelectionBox";
+            this.nxscriptSelectionBox.Size = new System.Drawing.Size(236, 23);
+            this.nxscriptSelectionBox.TabIndex = 6;
+            this.nxscriptSelectionBox.Text = "Select a script";
             // 
-            // comboBox1
+            // nxsChNum
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "0. Sequencial Rd (prefill)",
-            "1. Random Rd (prefill)",
-            "2. Seq/Random Rd mixed (prefill)",
-            "3. Rd/Wr/Erase mixed"});
-            this.comboBox1.Location = new System.Drawing.Point(74, 31);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(236, 23);
-            this.comboBox1.TabIndex = 6;
+            this.nxsChNum.Location = new System.Drawing.Point(74, 76);
+            this.nxsChNum.Name = "nxsChNum";
+            this.nxsChNum.Size = new System.Drawing.Size(77, 23);
+            this.nxsChNum.TabIndex = 47;
+            this.nxsChNum.Text = "4";
             // 
-            // checkBox1
+            // Pagelabel
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(197, 157);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(99, 19);
-            this.checkBox1.TabIndex = 37;
-            this.checkBox1.Text = "Output result";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.Pagelabel.AutoSize = true;
+            this.Pagelabel.Location = new System.Drawing.Point(183, 108);
+            this.Pagelabel.Name = "Pagelabel";
+            this.Pagelabel.Size = new System.Drawing.Size(47, 15);
+            this.Pagelabel.TabIndex = 48;
+            this.Pagelabel.Text = "Page#:";
             // 
-            // textBox6
+            // nxsTestBtn
             // 
-            this.textBox6.Location = new System.Drawing.Point(234, 60);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(77, 23);
-            this.textBox6.TabIndex = 47;
-            this.textBox6.Text = "8";
+            this.nxsTestBtn.Location = new System.Drawing.Point(26, 191);
+            this.nxsTestBtn.Name = "nxsTestBtn";
+            this.nxsTestBtn.Size = new System.Drawing.Size(102, 23);
+            this.nxsTestBtn.TabIndex = 36;
+            this.nxsTestBtn.Text = "Start Test";
+            this.nxsTestBtn.UseVisualStyleBackColor = true;
+            this.nxsTestBtn.Click += new System.EventHandler(this.nxsTestBtn_Click);
             // 
-            // label9
+            // Planelabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(184, 119);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(47, 15);
-            this.label9.TabIndex = 48;
-            this.label9.Text = "Page#:";
+            this.Planelabel.AutoSize = true;
+            this.Planelabel.Location = new System.Drawing.Point(22, 108);
+            this.Planelabel.Name = "Planelabel";
+            this.Planelabel.Size = new System.Drawing.Size(49, 15);
+            this.Planelabel.TabIndex = 46;
+            this.Planelabel.Text = "Plane#:";
             // 
-            // button2
+            // Chlabel
             // 
-            this.button2.Location = new System.Drawing.Point(27, 192);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 23);
-            this.button2.TabIndex = 36;
-            this.button2.Text = "Start Test";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(184, 89);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 15);
-            this.label10.TabIndex = 46;
-            this.label10.Text = "Plane#:";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "8MB",
-            "16MB",
-            "32MB",
-            "64MB"});
-            this.comboBox2.Location = new System.Drawing.Point(74, 89);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(76, 23);
-            this.comboBox2.TabIndex = 34;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(184, 63);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 15);
-            this.label11.TabIndex = 45;
-            this.label11.Text = "CH#:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1, 122);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(67, 15);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "Time(min):";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(27, 92);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 15);
-            this.label13.TabIndex = 35;
-            this.label13.Text = "Dram:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(74, 119);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(76, 23);
-            this.textBox7.TabIndex = 12;
-            this.textBox7.Text = "1";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "32GB",
-            "64GB",
-            "128GB",
-            "256GB"});
-            this.comboBox3.Location = new System.Drawing.Point(74, 60);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(76, 23);
-            this.comboBox3.TabIndex = 32;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(35, 63);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(33, 15);
-            this.label14.TabIndex = 33;
-            this.label14.Text = "Cap:";
+            this.Chlabel.AutoSize = true;
+            this.Chlabel.Location = new System.Drawing.Point(23, 79);
+            this.Chlabel.Name = "Chlabel";
+            this.Chlabel.Size = new System.Drawing.Size(35, 15);
+            this.Chlabel.TabIndex = 45;
+            this.Chlabel.Text = "CH#:";
             // 
             // textBoxStatus
             // 
@@ -915,14 +811,13 @@ namespace gui
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.rdCntTab);
             this.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SP2LT simulator v0.1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
-            tabErase.ResumeLayout(false);
+            this.tabErase.ResumeLayout(false);
             this.rdCntTab.ResumeLayout(false);
             this.mainTab.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -934,11 +829,9 @@ namespace gui
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
-            this.NxS.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.NxStabPage.ResumeLayout(false);
+            this.NxSgroupBox.ResumeLayout(false);
+            this.NxSgroupBox.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -997,28 +890,20 @@ namespace gui
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.TabPage NxS;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button engine_tst_btn;
+        private System.Windows.Forms.TabPage NxStabPage;
+        private System.Windows.Forms.GroupBox NxSgroupBox;
+        private System.Windows.Forms.TextBox nxsPageNum;
+        private System.Windows.Forms.Label Scriptlabel;
+        private System.Windows.Forms.TextBox nxsPlaneNum;
+        private System.Windows.Forms.ComboBox nxscriptSelectionBox;
+        private System.Windows.Forms.TextBox nxsChNum;
+        private System.Windows.Forms.Label Pagelabel;
+        private System.Windows.Forms.Button nxsTestBtn;
+        private System.Windows.Forms.Label Planelabel;
+        private System.Windows.Forms.Label Chlabel;
+        private System.Windows.Forms.TextBox nxsBlockNum;
+        private System.Windows.Forms.Label Blocklabel;
     }
 }
 

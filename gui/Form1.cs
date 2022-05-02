@@ -346,6 +346,8 @@ namespace gui
             IntPtr pPayload = Marshal.AllocHGlobal(16384+2048);
             int[][] p4k = new int[4][];
 
+            Array.Clear(inBuffer, 0, inBuffer.Length);
+
             // insert fake p4k informaiton
             for (int idx = 0; idx < 4; idx++)
             {
@@ -623,6 +625,16 @@ namespace gui
             }
 
             Marshal.FreeHGlobal(pPayload);
+        }
+        
+        private void nxsTestBtn_Click(object sender, EventArgs e)
+        {
+            /*NxScript nxScript = new NxScript();
+            nxScript.scriptThread = new Thread(nxScript.scriptDispatch);
+            nxScript.scriptThread.Start();*/
+            scriptNum = nxscriptSelectionBox.SelectedIndex;
+            scriptThread = new Thread(scriptDispatch);
+            scriptThread.Start();
         }
     }
 }

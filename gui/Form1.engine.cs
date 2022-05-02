@@ -31,6 +31,13 @@ namespace gui
             int intFullLeng = (2048+256)/4;
             int intRawLeng = 512;
 
+            int ch = int.Parse(chTxBox.Text);
+            int blk = int.Parse(blkTxBox.Text);
+            int plane = int.Parse(planeTxBox.Text);
+            int page = int.Parse(pageTxBox.Text);
+
+            int data_in = (ch << s_dev.chSftCnt) | (blk << s_dev.blkSftCnt) | (plane << s_dev.planeSftCnt) | (page << s_dev.pageSftCnt);
+
             Array.Clear(inBuffer, 0, inBuffer.Length);
 
             // for each ecc frame
@@ -42,6 +49,10 @@ namespace gui
                 // copy p4k content to inBuffer
                 inBuffer[eccIdx*intFullLeng + 512] = p4k[eccIdx/2][(eccIdx%2)*2];
                 inBuffer[eccIdx*intFullLeng + 513] = p4k[eccIdx/2][(eccIdx%2)*2+1];
+
+                for (idx = 0; idx < 512; idx++) {
+                    inBuffer[idx + eccIdx * intFullLeng] = data_in + idx; // Set (PBA + idx) as Data input
+                }
 
                 // encode 2K
                 for (idx = 0; idx < (512 + 2); idx++)
